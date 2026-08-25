@@ -464,6 +464,40 @@ export function IconEndToEndTesting(props) {
   );
 }
 
+// --- Client driven solutions capabilities ------------------------------------
+// "CRM & Order Management" reuses IconClientSolutions — the reference draws it
+// with the same path as the mega-menu entry, at size 23 rather than 22.
+
+export function IconDigitalOnboarding(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="8.2" r="3.6" />
+      <path d="M5 20.4c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4" />
+    </Svg>
+  );
+}
+
+export function IconWorkflowAutomation(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="6" cy="6.4" r="2.4" />
+      <circle cx="18" cy="17.6" r="2.4" />
+      <path d="M6 8.8v5.4a3.4 3.4 0 0 0 3.4 3.4h6.2" />
+      <path d="M8.4 6.4h6.2a3.4 3.4 0 0 1 3.4 3.4v5.4" />
+    </Svg>
+  );
+}
+
+export function IconPortalsPayments(props) {
+  return (
+    <Svg {...props}>
+      <rect x="2.8" y="5.6" width="18.4" height="12.8" rx="2.2" />
+      <path d="M2.8 10h18.4" />
+      <path d="M6.4 14.4h3.6" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
