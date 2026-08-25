@@ -259,6 +259,245 @@ export function IconInHouseTechs(props) {
   );
 }
 
+// --- AI & ML capabilities ----------------------------------------------------
+
+export function IconNlp(props) {
+  return (
+    <Svg {...props}>
+      <path d="M20.4 12.6c0 4-3.8 7.2-8.4 7.2-1 0-2-.15-2.9-.42L4.2 21l1.5-3.9C4.3 15.9 3.6 14.3 3.6 12.6c0-4 3.8-7.2 8.4-7.2s8.4 3.2 8.4 7.2Z" />
+      <path d="M8.6 11.4h6.8M8.6 14.4h4.4" />
+    </Svg>
+  );
+}
+
+export function IconComputerVision(props) {
+  return (
+    <Svg {...props}>
+      <path d="M2.6 12S6 5.8 12 5.8 21.4 12 21.4 12 18 18.2 12 18.2 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="3.2" />
+    </Svg>
+  );
+}
+
+export function IconPredictiveAnalytics(props) {
+  return (
+    <Svg {...props}>
+      <path d="M3.6 19.4h16.8" />
+      <path d="m4.8 15.4 4.4-4.8 3.4 2.8 6.6-7" />
+      <path d="M15.6 6.4h4v4" />
+    </Svg>
+  );
+}
+
+export function IconRecommendationEngines(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="2.6" />
+      <circle cx="5" cy="6.4" r="2.2" />
+      <circle cx="19" cy="6.4" r="2.2" />
+      <circle cx="5" cy="17.6" r="2.2" />
+      <circle cx="19" cy="17.6" r="2.2" />
+      <path d="m6.9 7.6 3.2 2.8M17.1 7.6l-3.2 2.8M6.9 16.4l3.2-2.8M17.1 16.4l-3.2-2.8" />
+    </Svg>
+  );
+}
+
+// --- Web development capabilities --------------------------------------------
+
+export function IconMarketingSite(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3" y="4.4" width="18" height="15.2" rx="2.2" />
+      <path d="M3 9h18" />
+      <path d="M6.4 6.7h.9M9.1 6.7h.9" />
+    </Svg>
+  );
+}
+
+export function IconSaasPlatform(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.2" y="3.2" width="7.4" height="7.4" rx="1.6" />
+      <rect x="13.4" y="3.2" width="7.4" height="7.4" rx="1.6" />
+      <rect x="3.2" y="13.4" width="7.4" height="7.4" rx="1.6" />
+      <rect x="13.4" y="13.4" width="7.4" height="7.4" rx="1.6" />
+    </Svg>
+  );
+}
+
+export function IconApiBackend(props) {
+  return (
+    <Svg {...props}>
+      <ellipse cx="12" cy="6.4" rx="7.4" ry="2.8" />
+      <path d="M4.6 6.4v11.2c0 1.55 3.3 2.8 7.4 2.8s7.4-1.25 7.4-2.8V6.4" />
+      <path d="M4.6 12c0 1.55 3.3 2.8 7.4 2.8s7.4-1.25 7.4-2.8" />
+    </Svg>
+  );
+}
+
+export function IconInternalDashboard(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3" y="4.4" width="18" height="15.2" rx="2.2" />
+      <path d="M7.4 15.6V11M12 15.6V8.4M16.6 15.6v-3" />
+    </Svg>
+  );
+}
+
+// --- Mobile application capabilities -----------------------------------------
+// "MVP Builds" reuses IconBoostEfficiency — the reference draws both with the
+// same bolt path, so there is no second glyph to add.
+
+export function IconCrossPlatform(props) {
+  return (
+    <Svg {...props}>
+      <rect x="2.8" y="3.4" width="9" height="17.2" rx="2" />
+      <rect x="13.8" y="7.4" width="7.4" height="13.2" rx="1.8" />
+      <path d="M6.4 18h1.8M16.6 18h1.8" />
+    </Svg>
+  );
+}
+
+export function IconApiIntegration(props) {
+  return (
+    <Svg {...props}>
+      <path d="M9.6 4.6 5 12l4.6 7.4M14.4 4.6 19 12l-4.6 7.4" />
+      <path d="M13 8.4l-2 7.2" />
+    </Svg>
+  );
+}
+
+export function IconStoreRelease(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3.4v11.4" />
+      <path d="m7.6 10.6 4.4 4.4 4.4-4.4" />
+      <path d="M4.6 18.4h14.8" />
+    </Svg>
+  );
+}
+
+// --- DevOps capabilities -----------------------------------------------------
+
+export function IconCicdPipeline(props) {
+  return (
+    <Svg {...props}>
+      <path d="M4.6 8.4a7.4 7.4 0 0 1 12.6-2.6" />
+      <path d="M17.2 3.2v2.8h-2.8" />
+      <path d="M19.4 15.6a7.4 7.4 0 0 1-12.6 2.6" />
+      <path d="M6.8 20.8V18h2.8" />
+    </Svg>
+  );
+}
+
+export function IconCloudArchitecture(props) {
+  return (
+    <Svg {...props}>
+      <path d="M6.4 17.4a3.8 3.8 0 0 1-.5-7.56A5.2 5.2 0 0 1 16.3 8.9a3.6 3.6 0 0 1 1.3 7.02" />
+      <path d="M8 17.4h9.6" />
+      <path d="M12 13.6v6.4" />
+      <path d="m9.6 18 2.4 2.4L14.4 18" />
+    </Svg>
+  );
+}
+
+export function IconContainers(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.2" y="3.4" width="7" height="7" rx="1.4" />
+      <rect x="13.8" y="3.4" width="7" height="7" rx="1.4" />
+      <rect x="3.2" y="13.6" width="7" height="7" rx="1.4" />
+      <rect x="13.8" y="13.6" width="7" height="7" rx="1.4" />
+      <path d="M10.2 6.9h3.6M6.7 10.4v3.2" />
+    </Svg>
+  );
+}
+
+export function IconMonitoring(props) {
+  return (
+    <Svg {...props}>
+      <path d="M3 13.2h3.6l2-4.4 3 8.8 2.2-6 1.6 3.2H21" />
+      <path d="M4.4 19.6h15.2" />
+    </Svg>
+  );
+}
+
+// --- QA automation capabilities ----------------------------------------------
+// IconApiTesting is close to IconApiIntegration but not identical — the QA
+// reference draws the inner slash differently, so it gets its own glyph.
+
+export function IconUnitTesting(props) {
+  return (
+    <Svg {...props}>
+      <path d="M5.2 4.6h13.6v14.8H5.2z" />
+      <path d="m8.2 11.4 2.2 2.2 4.8-4.8" />
+    </Svg>
+  );
+}
+
+export function IconIntegrationTesting(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="7.6" cy="7.6" r="3.4" />
+      <circle cx="16.4" cy="16.4" r="3.4" />
+      <path d="M10.4 8.6a5.8 5.8 0 0 1 5 5" />
+    </Svg>
+  );
+}
+
+export function IconApiTesting(props) {
+  return (
+    <Svg {...props}>
+      <path d="M9.6 4.6 5 12l4.6 7.4M14.4 4.6 19 12l-4.6 7.4" />
+      <path d="m13.2 8.6-2.4 6.8" />
+    </Svg>
+  );
+}
+
+export function IconEndToEndTesting(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="10.6" cy="10.6" r="6" />
+      <path d="m15.2 15.2 5 5" />
+      <path d="m8.2 10.6 1.8 1.8 3.2-3.4" />
+    </Svg>
+  );
+}
+
+// --- Client driven solutions capabilities ------------------------------------
+// "CRM & Order Management" reuses IconClientSolutions — the reference draws it
+// with the same path as the mega-menu entry, at size 23 rather than 22.
+
+export function IconDigitalOnboarding(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="8.2" r="3.6" />
+      <path d="M5 20.4c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4" />
+    </Svg>
+  );
+}
+
+export function IconWorkflowAutomation(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="6" cy="6.4" r="2.4" />
+      <circle cx="18" cy="17.6" r="2.4" />
+      <path d="M6 8.8v5.4a3.4 3.4 0 0 0 3.4 3.4h6.2" />
+      <path d="M8.4 6.4h6.2a3.4 3.4 0 0 1 3.4 3.4v5.4" />
+    </Svg>
+  );
+}
+
+export function IconPortalsPayments(props) {
+  return (
+    <Svg {...props}>
+      <rect x="2.8" y="5.6" width="18.4" height="12.8" rx="2.2" />
+      <path d="M2.8 10h18.4" />
+      <path d="M6.4 14.4h3.6" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {

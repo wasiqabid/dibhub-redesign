@@ -35,7 +35,9 @@ $color-on-dark-dim: rgba(255, 255, 255, 0.66);
 $color-on-dark-faint: rgba(255, 255, 255, 0.6);
 $color-on-dark-fainter: rgba(255, 255, 255, 0.55);
 $color-on-dark-nav: rgba(255, 255, 255, 0.78);
-$color-on-dark-social: rgba(255, 255, 255, 0.85);
+$color-on-dark-pill: rgba(255, 255, 255, 0.82);
+$color-on-dark-pill-border: rgba(255, 255, 255, 0.2);
+$color-on-dark-strong: rgba(255, 255, 255, 0.85);
 $color-on-dark-rule: rgba(255, 255, 255, 0.1);
 $color-on-dark-border: rgba(255, 255, 255, 0.14);
 $color-eyebrow-on-dark: #f2f4f4;
@@ -43,6 +45,9 @@ $color-eyebrow-on-dark: #f2f4f4;
 // --- Selection --------------------------------------------------------------
 $color-selection-bg: $color-accent;
 $color-selection-text: #101014;
+
+// Text on an accent-filled chip.
+$color-on-accent: #10201f;
 
 // --- Header -----------------------------------------------------------------
 $header-height: 72px;
@@ -72,6 +77,7 @@ $fs-body: 17px;
 $fs-body-sm: 15.5px;
 $fs-nav: 15px;
 $fs-tag: 11.5px;
+$fs-meta: 14px;
 
 // Fluid pairs used across sections
 $fs-h1: clamp(40px, 6.6vw, 80px);
@@ -93,6 +99,8 @@ $hero-pad-top: clamp(132px, 15vw, 196px);
 $hero-pad-bottom: clamp(88px, 11vw, 146px);
 $hero-pad-top-inner: clamp(124px, 14vw, 180px);
 $hero-pad-bottom-inner: clamp(72px, 9vw, 116px);
+// Service detail heroes open a little tighter than the section landing pages.
+$hero-pad-top-detail: clamp(112px, 13vw, 168px);
 $grid-gap: clamp(16px, 2vw, 28px);
 
 // --- Breakpoints ------------------------------------------------------------

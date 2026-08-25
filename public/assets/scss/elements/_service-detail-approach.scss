@@ -1,0 +1,99 @@
+// =============================================================================
+// Service detail — "Key Benefits" approach copy + outcome cards
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-svc-approach {
+  background: $color-bg;
+  border-top: 1px solid $color-border-section;
+}
+
+// Top-aligned, unlike the centred two-column heads elsewhere: the right column
+// is two full paragraphs, so the reference pins both columns to the top.
+.dh-svc-approach-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+  margin-bottom: clamp(44px, 5vw, 68px);
+}
+
+.dh-svc-approach-title {
+  max-width: 18ch;
+}
+
+.dh-svc-approach-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  p {
+    margin: 0;
+    font-size: $fs-body;
+    line-height: 1.75;
+    color: $color-muted;
+    text-wrap: pretty;
+  }
+}
+
+.dh-svc-benefit-grid {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @include media-up($bp-benefits-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-steps-4) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.dh-svc-benefit {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(24px, 2.6vw, 30px);
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-svc-benefit-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-svc-benefit-icon {
+  @include icon-tile(46px);
+}
+
+.dh-svc-benefit-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.dh-svc-benefit-blurb {
+  margin: 0;
+  font-size: $fs-body-sm;
+  line-height: 1.65;
+  color: inherit;
+  opacity: 0.62;
+  text-wrap: pretty;
+}

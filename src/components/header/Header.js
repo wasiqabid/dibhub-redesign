@@ -34,7 +34,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [navHovered, setNavHovered] = useState(false);
-  const [heroHeight, setHeroHeight] = useState(0);
+  // null = not measured yet, which is different from "measured, no hero".
+  const [heroHeight, setHeroHeight] = useState(null);
   const closeTimer = useRef(null);
 
   // Only a dark hero lets the bar go transparent; pages without one keep the
@@ -51,6 +52,12 @@ export default function Header() {
   useEffect(() => {
     setMenuOpen(false);
     setServicesOpen(false);
+    // You navigate by clicking a link in the bar, so the pointer is still over
+    // the header afterwards and `mouseleave` never fires — which left the bar
+    // stuck on its hovered (solid) treatment on the next page. A full page load
+    // starts this flag false and only sets it when the pointer actually moves
+    // in; client-side navigation has to reset it to behave the same way.
+    setNavHovered(false);
   }, [pathname]);
 
   const openServices = useCallback(() => {
@@ -63,6 +70,16 @@ export default function Header() {
     closeTimer.current = setTimeout(() => setServicesOpen(false), delay);
   }, []);
 
+  // The panel opens on hover, so without this a keyboard user could never reach
+  // the six links inside it. Close only once focus leaves the trigger and panel
+  // entirely, not while it moves between the links within them.
+  const handleServicesBlur = useCallback(
+    (event) => {
+      if (!event.currentTarget.contains(event.relatedTarget)) closeServices(0);
+    },
+    [closeServices]
+  );
+
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === 'Escape') setServicesOpen(false);
@@ -74,18 +91,27 @@ export default function Header() {
     };
   }, []);
 
+  const measured = heroHeight !== null;
   const overHero = heroHeight > 0 && y < heroHeight - 72;
   const isClear = overHero && y <= 6 && !navHovered && !menuOpen;
 
+  // Before the hero is measured the header claims neither state, so the
+  // stylesheet decides from `:has([data-hero-host])` and a hero page never
+  // paints the white plate first. Once measured, `--solid` is asserted
+  // explicitly and outranks that rule.
   const headerClass = [
     'dh-header',
-    isClear ? 'dh-header--clear' : 'dh-header--solid',
-    !isClear && y > 8 ? 'dh-header--raised' : '',
+    measured && !isClear ? 'dh-header--solid' : '',
+    measured && !isClear && y > 8 ? 'dh-header--raised' : '',
   ]
     .filter(Boolean)
     .join(' ');
 
   const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+
+  // The services overview already lists every service on the page itself, so the
+  // nav drops its dropdown there. Detail pages under /services keep it.
+  const showServicesMenu = pathname !== '/services';
 
   return (
     <header
@@ -100,7 +126,9 @@ export default function Header() {
             alt="DibHub"
             width={4625}
             height={2000}
-            priority
+            // Above the fold, so load it eagerly — but the LCP element on every
+            // page is the hero heading, so this must not claim `priority` (§10).
+            loading="eager"
             sizes="150px"
           />
         </Link>
@@ -110,27 +138,39 @@ export default function Header() {
             <nav className="dh-nav" aria-label="Primary">
               {PRIMARY_LINKS.map((link) =>
                 link.hasMegaMenu ? (
+                  // The Services item keeps its wrapper and chevron on every
+                  // route. On /services the chevron is only hidden, never
+                  // removed, so the item keeps its width and the rest of the
+                  // nav does not shift when the dropdown is dropped.
                   <div
                     key={link.href}
                     className="dh-nav-services"
-                    onMouseEnter={openServices}
-                    onMouseLeave={() => closeServices()}
+                    onMouseEnter={showServicesMenu ? openServices : undefined}
+                    onMouseLeave={showServicesMenu ? () => closeServices() : undefined}
+                    onFocus={showServicesMenu ? openServices : undefined}
+                    onBlur={showServicesMenu ? handleServicesBlur : undefined}
                   >
                     <Link
                       href={link.href}
                       className={`dh-nav-link${isActive(link.href) ? ' is-active' : ''}`}
-                      aria-expanded={servicesOpen}
+                      aria-expanded={showServicesMenu ? servicesOpen : undefined}
                     >
                       {link.label}
-                      <span className={`dh-nav-chevron${servicesOpen ? ' is-open' : ''}`}>
+                      <span
+                        className={`dh-nav-chevron${servicesOpen ? ' is-open' : ''}${
+                          showServicesMenu ? '' : ' is-hidden'
+                        }`}
+                      >
                         <IconChevronDown />
                       </span>
                     </Link>
-                    <ServicesMegaMenu
-                      open={servicesOpen}
-                      onMouseEnter={openServices}
-                      onMouseLeave={() => closeServices()}
-                    />
+                    {showServicesMenu ? (
+                      <ServicesMegaMenu
+                        open={servicesOpen}
+                        onMouseEnter={openServices}
+                        onMouseLeave={() => closeServices()}
+                      />
+                    ) : null}
                   </div>
                 ) : (
                   <Link

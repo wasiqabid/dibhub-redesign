@@ -4,6 +4,13 @@
 
 @use 'default' as *;
 
+// The header is mounted globally and cannot see whether the page below it opens
+// on a dark hero, so JS only learns that after it has measured — one paint too
+// late, which flashed the white plate on refresh. CSS can tell immediately, and
+// this is the same condition the clear state always had: a hero is present and
+// JS has not (yet) said the header should be solid.
+$header-over-hero: 'body:has([data-hero-host]) .dh-header:not(.dh-header--solid)';
+
 .dh-header {
   position: fixed;
   top: 0;
@@ -22,7 +29,7 @@
 }
 
 // Sitting over the top of a dark hero: drop the plate, let the nav go white.
-.dh-header--clear {
+#{$header-over-hero} {
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -110,7 +117,7 @@
   margin-left: 16px;
 }
 
-.dh-header--clear .dh-nav-link {
+#{$header-over-hero} .dh-nav-link {
   color: $color-on-dark-nav;
 
   &.is-active,
@@ -125,6 +132,12 @@
 
   &.is-open {
     transform: rotate(180deg);
+  }
+
+  // Routes without a dropdown hide the chevron rather than dropping it, so the
+  // Services item keeps its width and the nav never shifts between pages.
+  &.is-hidden {
+    visibility: hidden;
   }
 }
 
@@ -151,8 +164,8 @@
   }
 }
 
-.dh-header--clear .dh-nav-social {
-  color: $color-on-dark-social;
+#{$header-over-hero} .dh-nav-social {
+  color: $color-on-dark-strong;
 }
 
 // --- Services mega-menu ------------------------------------------------------
@@ -266,7 +279,7 @@
   transition: background 0.28s ease;
 }
 
-.dh-header--clear .dh-burger {
+#{$header-over-hero} .dh-burger {
   border-color: rgba(255, 255, 255, 0.3);
 
   .dh-burger-bar {

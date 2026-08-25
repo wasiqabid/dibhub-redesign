@@ -1,5 +1,6 @@
 // Shared link data for the header, mega-menu, mobile menu and footer.
 // Design labels are kept verbatim; hrefs are mapped onto this project's routes.
+// Order mirrors the /services page listing so the dropdown matches it everywhere.
 
 export const SERVICE_LINKS = [
   {
@@ -7,12 +8,6 @@ export const SERVICE_LINKS = [
     label: 'AI & Machine Learning',
     blurb: 'Empowering machines to mimic intelligence.',
     href: '/services/ai-ml',
-  },
-  {
-    key: 'client-driven',
-    label: 'Client Driven Solutions',
-    blurb: 'Built around your vision, powered by our expertise.',
-    href: '/services/business-services',
   },
   {
     key: 'web-development',
@@ -37,6 +32,12 @@ export const SERVICE_LINKS = [
     label: 'QA Automation',
     blurb: 'Accelerating quality with reliable test systems.',
     href: '/services/qa-automation',
+  },
+  {
+    key: 'client-driven',
+    label: 'Client Driven Solutions',
+    blurb: 'Built around your vision, powered by our expertise.',
+    href: '/services/business-services',
   },
 ];
 

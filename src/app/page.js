@@ -12,6 +12,12 @@ export const metadata = {
   title: 'DibHub — Dedicated Innovative Brains Hub',
   description:
     "More than an IT provider — we're your strategic partner in digital transformation. Backed by a decade of experience and a team of certified experts.",
+  openGraph: {
+    title: 'DibHub — Dedicated Innovative Brains Hub',
+    description:
+      "More than an IT provider — we're your strategic partner in digital transformation. Backed by a decade of experience and a team of certified experts.",
+    images: ['/assets/images/dibhub-logo.png'],
+  },
 };
 
 export default function HomePage() {

@@ -1,0 +1,73 @@
+// =============================================================================
+// Service detail — "What we build" capability cards
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-svc-capabilities {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+// 1 column, 2 from 640px, 4 from 1120px — the reference's outcomeCols steps.
+.dh-svc-capability-grid {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+  align-items: stretch;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @include media-up($bp-benefits-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-steps-4) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.dh-svc-capability {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(26px, 2.8vw, 34px);
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-svc-capability-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-svc-capability-icon {
+  @include icon-tile(46px);
+}
+
+.dh-svc-capability-title {
+  margin: 0;
+  font-size: $fs-h3-service;
+  font-weight: 700;
+  letter-spacing: -0.014em;
+  color: inherit;
+}
+
+.dh-svc-capability-blurb {
+  margin: 0;
+  font-size: $fs-body-sm;
+  line-height: 1.68;
+  color: inherit;
+  opacity: 0.62;
+  text-wrap: pretty;
+}
