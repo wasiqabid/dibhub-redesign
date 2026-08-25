@@ -1,0 +1,79 @@
+// =============================================================================
+// Footer
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-footer {
+  background: $color-ink;
+  color: $color-on-dark-muted;
+  border-top: 1px solid $color-on-dark-rule;
+
+  .dh-container {
+    padding-top: clamp(56px, 7vw, 88px);
+  }
+}
+
+.dh-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: clamp(32px, 4vw, 56px);
+}
+
+.dh-footer-brand {
+  max-width: 34ch;
+
+  img {
+    height: 30px;
+    width: auto;
+    margin-bottom: 22px;
+  }
+
+  p {
+    margin: 0;
+    font-size: $fs-body-sm;
+    line-height: 1.7;
+    color: $color-on-dark-fainter;
+  }
+}
+
+.dh-footer-col h4 {
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $color-on-dark;
+}
+
+.dh-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+
+  a {
+    font-size: $fs-nav;
+    color: $color-on-dark-faint;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.dh-footer-base {
+  margin-top: clamp(44px, 5vw, 64px);
+  border-top: 1px solid $color-on-dark-rule;
+  padding: 24px 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    font-size: 14px;
+    color: $color-on-dark-faint;
+  }
+}

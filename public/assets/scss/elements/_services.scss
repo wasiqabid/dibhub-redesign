@@ -1,0 +1,243 @@
+// =============================================================================
+// Our Expertise — six cards sharing the pop-card hover with the process grid
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-services {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+// Two-column section header: heading block on the left, supporting line on the
+// right, vertically centred against the full height of the heading block.
+// Kept as one rule so the alignment is changed in one place, not three.
+.dh-services-head,
+.dh-offerings-head,
+.dh-benefits-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(20px, 4vw, 64px);
+  align-items: center;
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+
+.dh-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  align-items: stretch;
+}
+
+.dh-service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(26px, 2.8vw, 34px);
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-service-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-service-icon {
+  @include icon-tile(46px);
+}
+
+.dh-service-title {
+  margin: 0;
+  font-size: $fs-h3-service;
+  font-weight: 700;
+  letter-spacing: -0.014em;
+  color: inherit;
+}
+
+.dh-service-blurb {
+  margin: 0;
+  font-size: $fs-body-sm;
+  line-height: 1.68;
+  color: inherit;
+  opacity: 0.62;
+  text-wrap: pretty;
+}
+
+.dh-service-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: inherit;
+}
+
+// =============================================================================
+// Services page — offerings grid + Key Benefits
+// =============================================================================
+
+.dh-offerings {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  align-items: stretch;
+}
+
+.dh-offering {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(26px, 2.8vw, 34px);
+  scroll-margin-top: 110px;
+  cursor: pointer;
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-offering-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+
+  &:focus-within {
+    border-color: $color-accent;
+  }
+}
+
+.dh-offering-icon {
+  @include icon-tile(46px);
+}
+
+.dh-offering-title {
+  margin: 0;
+  font-size: $fs-h3-service;
+  font-weight: 700;
+  letter-spacing: -0.014em;
+  color: inherit;
+}
+
+.dh-offering-link {
+  color: inherit;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.dh-offering-blurb {
+  margin: 0;
+  font-size: $fs-body-sm;
+  line-height: 1.68;
+  color: inherit;
+  opacity: 0.62;
+  text-wrap: pretty;
+}
+
+// --- Key Benefits ------------------------------------------------------------
+
+.dh-benefits {
+  background: $color-bg;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-benefits-lead {
+  margin: 0;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $color-muted;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+// 1 column, 2 from 640px, 4 from 1120px — the source's benefitCols steps.
+.dh-benefits-grid {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @include media-up($bp-benefits-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-steps-4) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.dh-benefit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: clamp(22px, 2.4vw, 28px);
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-benefit-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-benefit-icon {
+  @include icon-tile(46px);
+}
+
+.dh-benefit-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: inherit;
+}

@@ -1,0 +1,46 @@
+// =============================================================================
+// Contact CTA — dotted field, cursor spotlight, gradient button
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-cta {
+  position: relative;
+  overflow: hidden;
+  background: $color-bg;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-cta-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(31, 31, 37, 0.1) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.dh-cta-inner {
+  position: relative;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: $section-pad-y-cta $container-pad;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+
+.dh-cta-lead {
+  margin: 20px 0 0;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $color-muted;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.dh-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}

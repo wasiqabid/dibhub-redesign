@@ -1,0 +1,107 @@
+// =============================================================================
+// Mixins & helpers
+// =============================================================================
+
+@use 'variables' as *;
+
+// --- Media queries (mobile-first: min-width) ---------------------------------
+@mixin media-up($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+// The source flips the whole nav at 900px, so the mobile branch needs a
+// max-width counterpart rather than a second min-width block.
+@mixin media-below($bp) {
+  @media (max-width: ($bp - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin nav-desktop {
+  @include media-up($bp-nav) {
+    @content;
+  }
+}
+
+@mixin nav-mobile {
+  @include media-below($bp-nav) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// --- Layout ------------------------------------------------------------------
+@mixin container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding-inline: $container-pad;
+}
+
+@mixin section-shell($top: $section-pad-y, $bottom: $section-pad-y) {
+  @include container;
+  padding-top: $top;
+  padding-bottom: $bottom;
+}
+
+// --- Recurring pieces --------------------------------------------------------
+// The small uppercase label with a teal rule under it, used above every H2.
+@mixin eyebrow($color: $color-ink) {
+  display: inline-block;
+  font-size: $fs-eyebrow;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color;
+  padding-bottom: 7px;
+  border-bottom: 2px solid $color-accent;
+}
+
+@mixin section-heading {
+  margin: 0;
+  font-size: $fs-h2;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: $color-ink;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+
+// Square icon tile that sits above a card heading.
+@mixin icon-tile($size: 46px) {
+  width: $size;
+  height: $size;
+  flex: 0 0 auto;
+  border-radius: $radius-lg;
+  background: $color-accent-tint;
+  border: 1px solid $color-accent-tint-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-accent-deep;
+  transition: color 0.38s ease;
+}
+
+// Cards that invert to dark ink when hovered, used by process/service/capability
+// grids. The sibling dim/blur half lives in JS because it is group-driven.
+@mixin pop-card {
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  color: $color-ink;
+  transition:
+    background 0.38s $ease-out-soft,
+    color 0.38s ease,
+    border-color 0.38s ease,
+    box-shadow 0.38s ease,
+    transform 0.38s $ease-out-soft,
+    filter 0.38s ease,
+    opacity 0.38s ease;
+}

@@ -1,0 +1,142 @@
+// =============================================================================
+// How we work — four steps with connector arrows that follow the column count
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-process {
+  background: $color-bg;
+}
+
+.dh-process-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(20px, 4vw, 64px);
+  align-items: center;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.dh-process-lead {
+  margin: 0;
+  font-size: $fs-body;
+  line-height: 1.65;
+  color: $color-muted;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+// 1 column, then 2 from 560px, then 4 from 1120px — the source's exact steps.
+.dh-process-grid {
+  display: grid;
+  gap: clamp(20px, 2.5vw, 32px);
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @include media-up($bp-steps-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-steps-4) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.dh-step {
+  position: relative;
+  padding: clamp(22px, 2.4vw, 28px);
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-step-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-step-icon {
+  @include icon-tile(46px);
+  margin-bottom: 18px;
+}
+
+.dh-step-title {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-weight: 700;
+  color: inherit;
+  letter-spacing: -0.01em;
+}
+
+.dh-step-blurb {
+  margin: 0;
+  font-size: $fs-body-sm;
+  line-height: 1.65;
+  color: inherit;
+  opacity: 0.66;
+}
+
+// --- Connector arrows --------------------------------------------------------
+// Stacked: the arrow drops below and points down. Side by side: it sits in the
+// gutter and points right, and is hidden at the end of every row.
+.dh-step-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: -19px;
+  transform: translateX(-50%) rotate(90deg);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: $color-bg;
+  border: 1px solid $color-accent-arrow-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.dh-step-arrow-head {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-top: 1.7px solid $color-accent;
+  border-right: 1.7px solid $color-accent;
+  transform: rotate(45deg) translate(-1px, 1px);
+}
+
+@include media-up($bp-steps-2) {
+  .dh-step-arrow {
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    right: -19px;
+    transform: translateY(-50%);
+  }
+
+  .dh-step:nth-child(2n) .dh-step-arrow {
+    opacity: 0;
+  }
+}
+
+@include media-up($bp-steps-4) {
+  .dh-step:nth-child(2n) .dh-step-arrow {
+    opacity: 1;
+  }
+
+  .dh-step:nth-child(4n) .dh-step-arrow {
+    opacity: 0;
+  }
+}

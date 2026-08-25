@@ -1,0 +1,156 @@
+// =============================================================================
+// Selected work — project cards with the group blur/lift hover
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-work {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-work-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: clamp(32px, 4vw, 52px);
+}
+
+.dh-work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: $grid-gap;
+  align-items: stretch;
+}
+
+.dh-work-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  color: inherit;
+  transition:
+    border-color 0.32s ease,
+    box-shadow 0.32s ease,
+    filter 0.32s ease,
+    opacity 0.32s ease,
+    transform 0.32s $ease-out-soft;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.02);
+    border-color: $color-accent;
+    box-shadow: $shadow-card-hover;
+
+    .dh-work-frame {
+      padding: 0;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.99);
+    filter: blur(2px);
+    opacity: 0.5;
+  }
+
+  &:focus-within {
+    border-color: $color-accent;
+  }
+}
+
+// The screenshot inset relaxes to zero on hover, so the image fills the frame.
+.dh-work-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: $color-bg;
+  flex: 0 0 auto;
+  overflow: hidden;
+  padding: 7px;
+  transition: padding 0.42s $ease-out-soft;
+}
+
+.dh-work-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dh-work-body {
+  padding: clamp(24px, 2.6vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  flex: 1 1 auto;
+  color: inherit;
+}
+
+.dh-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dh-tag {
+  font-size: $fs-tag;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: $color-accent-deep;
+  background: $color-accent-soft;
+  border-radius: $radius-sm;
+  padding: 4px 9px;
+}
+
+.dh-work-title {
+  margin: 0;
+  font-size: $fs-h3-card;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: $color-ink;
+}
+
+// Stretching the anchor keeps the whole card clickable without nesting
+// interactive elements or duplicating the link in markup.
+.dh-work-link {
+  color: inherit;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.dh-work-blurb {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.62;
+  color: $color-muted-soft;
+  text-wrap: pretty;
+}
+
+.dh-work-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: $fs-nav;
+  font-weight: 700;
+  color: $color-ink;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.dh-work-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(36px, 4.5vw, 56px);
+}

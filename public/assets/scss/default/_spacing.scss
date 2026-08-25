@@ -1,0 +1,55 @@
+// =============================================================================
+// Layout utilities
+// Shared shells so every section lines up on the same 1280px measure.
+// =============================================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.dh-container {
+  @include container;
+}
+
+.dh-section-shell {
+  @include section-shell;
+}
+
+.dh-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dh-eyebrow {
+  @include eyebrow;
+}
+
+.dh-eyebrow--on-dark {
+  @include eyebrow($color-eyebrow-on-dark);
+}
+
+.dh-section-title {
+  @include section-heading;
+}
+
+.dh-section-lead {
+  margin: 0;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $color-muted;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+// Clearance for pages that sit directly under the fixed header instead of
+// opening on the hero. Applied once by the (inner) route group layout.
+.dh-inner-shell {
+  padding-top: $header-height;
+
+  // Pages that open on their own dark hero supply their own clearance and want
+  // the header sitting over them, same as Home.
+  &:has([data-hero-host]) {
+    padding-top: 0;
+  }
+}

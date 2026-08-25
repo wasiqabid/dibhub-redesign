@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @keyframes dh-drift { 0% { transform: translate3d(0,0,0) scale(1); opacity: .95; } 50% { transform: translate3d(-40px,34px,0) scale(1.09); opacity: 1; } 100% { transform: translate3d(0,0,0) scale(1); opacity: .95; } }
+  @keyframes dh-caret { 0%, 45% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes dh-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  body { margin: 0; font-family: Cabin, system-ui, sans-serif; color: #262626; background: #ffffff; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  img { display: block; max-width: 100%; }
+  a { color: #23726f; text-decoration: none; }
+  a:hover { color: #43b3ae; }
+  ::selection { background: #43b3ae; color: #101014; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;overflow-x:hidden">
+
+  <header id="dh-header" style="position:fixed;top:0;left:0;right:0;width:100%;z-index:50;transition:box-shadow .3s ease,background .32s ease,border-color .32s ease;background:rgba(255,255,255,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #ebebee">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,56px);height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="./DibHub Home.dc.html" data-nav-logo="" style="display:flex;align-items:center;flex:1 1 0;min-width:0">
+        <img src="./assets/dibhub-logo.png" alt="DibHub" style="height:27px;width:auto">
+      </a>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <nav style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:34px">
+          <a href="./DibHub Home.dc.html" data-nav-link="" style="font-size:15px;font-weight:500;color:#4a4a52;cursor:pointer;padding:6px 0;border-bottom:2px solid transparent;transition:color .28s ease,border-color .2s ease" style-hover="color:#1f1f25;border-bottom:2px solid #43b3ae">Home</a>
+          <div data-svc-wrap="" onMouseEnter="{{ openServices }}" onMouseLeave="{{ closeServices }}" style="position:relative;display:flex;align-items:center">
+            <a href="./DibHub Services.dc.html" data-nav-link="" data-svc-trigger="" style="display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;color:#4a4a52;padding:6px 0;border-bottom:2px solid transparent;transition:color .28s ease,border-color .2s ease;cursor:pointer" style-hover="color:#1f1f25;border-bottom:2px solid #43b3ae">Services<svg data-svc-chev="" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform .28s ease"><path d="m5 9 7 7 7-7"/></svg></a>
+            <div data-svc-panel="" style="position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-8px);width:min(1040px,calc(100vw - 32px));max-height:calc(100vh - 96px);overflow:auto;background:#ffffff;border:1px solid #e6e8e8;border-radius:10px;box-shadow:0 28px 64px rgba(16,18,20,0.16);padding:20px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .26s ease,transform .26s cubic-bezier(.2,.7,.3,1),visibility .26s;z-index:60">
+              <a href="./DibHub Service - AI & ML.dc.html" data-cap="" style="display:flex;gap:16px;align-items:flex-start;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:18px;color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+                <span data-cap-icon="" style="width:38px;height:38px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.4" y="8.4" width="7.2" height="7.2" rx="1.4"/><path d="M12 3.4v5M12 15.6v5M3.4 12h5M15.6 12h5"/></svg></span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:16px;font-weight:700;letter-spacing:-0.012em;color:inherit">AI &amp; Machine Learning</span>
+                  <span style="font-size:13.5px;line-height:1.55;color:inherit;opacity:0.66">Empowering machines to mimic intelligence.</span>
+                </span>
+              </a>
+              <a href="./DibHub Service - Client Driven Solutions.dc.html" data-cap="" style="display:flex;gap:16px;align-items:flex-start;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:18px;color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+                <span data-cap-icon="" style="width:38px;height:38px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 20.4V6.2l6.2-2.6v16.8"/><path d="M10.8 9.6h5.4v10.8"/><path d="M19.4 20.4H3.6"/><path d="M7.4 9.8h.8M7.4 13.4h.8M13.4 13.4h.8M13.4 16.6h.8"/></svg></span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:16px;font-weight:700;letter-spacing:-0.012em;color:inherit">Client Driven Solutions</span>
+                  <span style="font-size:13.5px;line-height:1.55;color:inherit;opacity:0.66">Built around your vision, powered by our expertise.</span>
+                </span>
+              </a>
+              <a href="./DibHub Service - Web Development.dc.html" data-cap="" style="display:flex;gap:16px;align-items:flex-start;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:18px;color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+                <span data-cap-icon="" style="width:38px;height:38px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 20.4 12 12 20.8 3.6 12 12 3.2Z"/><path d="M7.6 12h8.8M12 7.6v8.8"/></svg></span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:16px;font-weight:700;letter-spacing:-0.012em;color:inherit">Web Development</span>
+                  <span style="font-size:13.5px;line-height:1.55;color:inherit;opacity:0.66">Crafting digital experiences for modern businesses.</span>
+                </span>
+              </a>
+              <a href="./DibHub Service - Mobile Applications.dc.html" data-cap="" style="display:flex;gap:16px;align-items:flex-start;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:18px;color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+                <span data-cap-icon="" style="width:38px;height:38px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.8" width="10" height="18.4" rx="2.2"/><path d="M11 18.4h2"/></svg></span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:16px;font-weight:700;letter-spacing:-0.012em;color:inherit">Mobile Applications</span>
+                  <span style="font-size:13.5px;line-height:1.55;color:inherit;opacity:0.66">Delivering seamless apps with elegant interfaces.</span>
+                </span>
+              </a>
+              <a href="#top" data-cap="" style="display:flex;gap:16px;align-items:flex-start;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:18px;color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+                <span data-cap-icon="" style="width:38px;height:38px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 19.4 6v6.2c0 4.2-3.1 7.2-7.4 8.6-4.3-1.4-7.4-4.4-7.4-8.6V6L12 3.2Z"/><path d="m9 12.2 2.2 2.2 3.8-4"/></svg></span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:16px;font-weight:700;letter-spacing:-0.012em;color:inherit">DevOps &amp; Cloud Engineering</span>
+                  <span style="font-size:13.5px;line-height:1.55;color:inherit;opacity:0.66">Protecting data software and networks.</span>
+                </span>
+              </a>
+              <a href="./DibHub Service - QA Automation.dc.html" data-cap="" style="display:flex;gap:16px;align-items:flex-start;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:18px;color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+                <span data-cap-icon="" style="width:38px;height:38px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 20.2h16.4"/><path d="M6.4 20.2V9.6M12 20.2V9.6M17.6 20.2V9.6"/><path d="M3.6 9.6 12 4.2l8.4 5.4H3.6Z"/></svg></span>
+                <span style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:16px;font-weight:700;letter-spacing:-0.012em;color:inherit">QA Automation</span>
+                  <span style="font-size:13.5px;line-height:1.55;color:inherit;opacity:0.66">Accelerating quality with reliable test systems.</span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <a href="./DibHub Portfolio.dc.html" data-nav-link="active" style="font-size:15px;font-weight:600;color:#1f1f25;letter-spacing:0.005em;cursor:pointer;padding:6px 0;border-bottom:2px solid #43b3ae;transition:color .28s ease">Portfolio</a>
+          <a href="./DibHub About.dc.html" data-nav-link="" style="font-size:15px;font-weight:500;color:#4a4a52;cursor:pointer;padding:6px 0;border-bottom:2px solid transparent;transition:color .28s ease,border-color .2s ease" style-hover="color:#1f1f25;border-bottom:2px solid #43b3ae">About</a>
+          <a href="./DibHub Team.dc.html" data-nav-link="" style="font-size:15px;font-weight:500;color:#4a4a52;cursor:pointer;padding:6px 0;border-bottom:2px solid transparent;transition:color .28s ease,border-color .2s ease" style-hover="color:#1f1f25;border-bottom:2px solid #43b3ae">Team</a>
+        </nav>
+        <div style="flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:8px">
+          <a href="https://www.linkedin.com/company/dibhub" target="_blank" rel="noopener noreferrer" aria-label="DibHub on LinkedIn" data-nav-social="" style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:#4a4a52;transition:color .24s ease,transform .24s ease" style-hover="color:#43b3ae;transform:translateY(-2px)"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95C20.6 8.75 22 10.9 22 14.1V21h-4v-6.1c0-1.5-.54-2.5-1.9-2.5-1.14 0-1.8.75-2.1 1.48-.1.26-.13.62-.13.98V21h-4V9Z"/></svg></a>
+          <a href="https://www.facebook.com/people/DibHub/61578628965230/" target="_blank" rel="noopener noreferrer" aria-label="DibHub on Facebook" data-nav-social="" style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:#4a4a52;transition:color .24s ease,transform .24s ease" style-hover="color:#43b3ae;transform:translateY(-2px)"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.29-.04-1.28-.12-2.43-.12-2.4 0-4.04 1.47-4.04 4.17V9.9H7.5V13h2.53v8h3.47Z"/></svg></a>
+          <a href="https://www.instagram.com/dib_hub/" target="_blank" rel="noopener noreferrer" aria-label="DibHub on Instagram" data-nav-social="" style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:#4a4a52;transition:color .24s ease,transform .24s ease" style-hover="color:#43b3ae;transform:translateY(-2px)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="./DibHub Contact.dc.html" data-nav-link="" style="flex:0 0 auto;white-space:nowrap;margin-left:16px;font-size:15px;font-weight:500;color:#4a4a52;padding:6px 0;border-bottom:2px solid transparent;transition:color .28s ease,border-color .2s ease" style-hover="color:#1f1f25;border-bottom:2px solid #43b3ae">Contact us</a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ toggleMenu }}" aria-label="Menu" data-burger="" style="flex:0 0 auto;width:46px;height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:transparent;border:1px solid #e2e2e6;border-radius:4px;cursor:pointer;padding:0">
+          <span data-burger-bar="" style="display:block;width:18px;height:2px;background:#1f1f25;transition:background .28s ease"></span>
+          <span data-burger-bar="" style="display:block;width:18px;height:2px;background:#1f1f25;transition:background .28s ease"></span>
+        </button>
+      </sc-if>
+    </div>
+
+    <div style="position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden;pointer-events:none"><div id="dh-progress" style="height:100%;width:100%;background:#43b3ae;transform:scaleX(0);transform-origin:0 50%;transition:transform .12s linear"></div></div>
+
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <nav style="border-top:1px solid #ebebee;background:#ffffff;padding:14px clamp(20px,5vw,56px) 26px;display:flex;flex-direction:column;gap:2px">
+        <a href="./DibHub Home.dc.html" onClick="{{ closeMenu }}" style="font-size:17px;font-weight:500;color:#3a3a42;padding:13px 0;border-bottom:1px solid #f0f0f2">Home</a>
+        <div style="display:flex;flex-direction:column;padding:13px 0;border-bottom:1px solid #f0f0f2">
+          <a href="./DibHub Services.dc.html" onClick="{{ closeMenu }}" style="font-size:17px;font-weight:600;color:#1f1f25;margin-bottom:6px">Services</a>
+          <a href="./DibHub Service - AI & ML.dc.html" onClick="{{ closeMenu }}" style="font-size:15px;font-weight:500;color:#5c5c66;padding:10px 0 10px 14px;border-left:2px solid #e6e8e8">AI &amp; Machine Learning</a>
+          <a href="./DibHub Service - Client Driven Solutions.dc.html" onClick="{{ closeMenu }}" style="font-size:15px;font-weight:500;color:#5c5c66;padding:10px 0 10px 14px;border-left:2px solid #e6e8e8">Client Driven Solutions</a>
+          <a href="./DibHub Service - Web Development.dc.html" onClick="{{ closeMenu }}" style="font-size:15px;font-weight:500;color:#5c5c66;padding:10px 0 10px 14px;border-left:2px solid #e6e8e8">Web Development</a>
+          <a href="./DibHub Service - Mobile Applications.dc.html" onClick="{{ closeMenu }}" style="font-size:15px;font-weight:500;color:#5c5c66;padding:10px 0 10px 14px;border-left:2px solid #e6e8e8">Mobile Applications</a>
+          <a href="#top" onClick="{{ closeMenu }}" style="font-size:15px;font-weight:600;color:#1f1f25;padding:10px 0 10px 14px;border-left:2px solid #43b3ae">DevOps &amp; Cloud Engineering</a>
+          <a href="./DibHub Service - QA Automation.dc.html" onClick="{{ closeMenu }}" style="font-size:15px;font-weight:500;color:#5c5c66;padding:10px 0 10px 14px;border-left:2px solid #e6e8e8">QA Automation</a>
+        </div>
+        <a href="./DibHub Portfolio.dc.html" onClick="{{ closeMenu }}" style="font-size:17px;font-weight:500;color:#3a3a42;padding:13px 0;border-bottom:1px solid #f0f0f2">Portfolio</a>
+        <a href="./DibHub About.dc.html" onClick="{{ closeMenu }}" style="font-size:17px;font-weight:500;color:#3a3a42;padding:13px 0;border-bottom:1px solid #f0f0f2">About</a>
+        <a href="./DibHub Team.dc.html" onClick="{{ closeMenu }}" style="font-size:17px;font-weight:500;color:#3a3a42;padding:13px 0;border-bottom:1px solid #f0f0f2">Team</a>
+        <a href="./DibHub Contact.dc.html" onClick="{{ closeMenu }}" style="margin-top:16px;display:inline-flex;align-items:center;justify-content:center;background:#1f1f25;color:#ffffff;font-size:16px;font-weight:700;padding:15px 22px;border-radius:4px">Contact us</a>
+      </nav>
+    </sc-if>
+  </header>
+
+  <section id="top" data-screen-label="Team Recovery Tech hero" data-spot-host="" style="position:relative;background:#1f1f25;color:#ffffff;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.085) 1px, transparent 1px);background-size:26px 26px;pointer-events:none"></div>
+    <div id="dh-glow" style="position:absolute;top:-280px;right:-160px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle, rgba(67,179,174,0.30) 0%, rgba(67,179,174,0.06) 45%, transparent 70%);pointer-events:none;animation:dh-drift 22s ease-in-out infinite;transition:opacity .8s ease"></div>
+    <div data-spot="" style="position:absolute;top:0;left:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:radial-gradient(circle, rgba(67,179,174,0.20) 0%, rgba(67,179,174,0.05) 42%, transparent 68%);pointer-events:none;opacity:0;transform:translate3d(-999px,-999px,0);transition:opacity .5s ease"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(255,255,255,0.10)"></div>
+
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(112px,13vw,168px) clamp(20px,5vw,56px) clamp(72px,9vw,116px)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:clamp(22px,3vw,30px);font-size:14px;color:rgba(255,255,255,0.55);animation:dh-rise .7s cubic-bezier(.2,.7,.3,1) both">
+        <a href="./DibHub Portfolio.dc.html" style="color:rgba(255,255,255,0.55);transition:color .2s ease" style-hover="color:#43b3ae">Portfolio</a>
+        <span aria-hidden="true">/</span>
+        <span style="color:rgba(255,255,255,0.85)">Team Recovery Tech</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:clamp(20px,3vw,28px);animation:dh-rise .7s cubic-bezier(.2,.7,.3,1) .06s both">
+        <span style="display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#f2f4f4;padding-bottom:7px;border-bottom:2px solid #43b3ae">Behavioral Health / Mobile App Platform</span>
+      </div>
+
+      <h1 id="dh-hero-h1" style="margin:0;font-size:clamp(38px,6vw,72px);line-height:1.03;letter-spacing:-0.03em;font-weight:700;color:#ffffff;max-width:16ch;text-wrap:balance"><span style="color:#43b3ae">Team Recovery Tech</span></h1>
+
+      <p style="margin:clamp(22px,3vw,30px) 0 0;font-size:clamp(19px,1.8vw,24px);line-height:1.55;color:rgba(255,255,255,0.82);max-width:38ch;text-wrap:pretty;animation:dh-rise .8s cubic-bezier(.2,.7,.3,1) .18s both">Custom Mobile App Platform for Addiction Treatment Centers and Behavioral Health Providers.</p>
+
+      <div style="margin-top:clamp(30px,3.6vw,42px);display:flex;flex-wrap:wrap;align-items:center;gap:10px;animation:dh-rise .8s cubic-bezier(.2,.7,.3,1) .26s both">
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#43b3ae;margin-right:6px">Tech stack</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.20);border-radius:100px;padding:8px 16px;cursor:default;transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease" style-hover="background:#43b3ae;color:#10201f;border-color:#43b3ae;transform:translateY(-2px)">React Native</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.20);border-radius:100px;padding:8px 16px;cursor:default;transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease" style-hover="background:#43b3ae;color:#10201f;border-color:#43b3ae;transform:translateY(-2px)">React.js</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.20);border-radius:100px;padding:8px 16px;cursor:default;transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease" style-hover="background:#43b3ae;color:#10201f;border-color:#43b3ae;transform:translateY(-2px)">Nest.js</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.20);border-radius:100px;padding:8px 16px;cursor:default;transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease" style-hover="background:#43b3ae;color:#10201f;border-color:#43b3ae;transform:translateY(-2px)">TypeScript</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.20);border-radius:100px;padding:8px 16px;cursor:default;transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease" style-hover="background:#43b3ae;color:#10201f;border-color:#43b3ae;transform:translateY(-2px)">AWS</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.20);border-radius:100px;padding:8px 16px;cursor:default;transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease" style-hover="background:#43b3ae;color:#10201f;border-color:#43b3ae;transform:translateY(-2px)">PostgreSQL</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.20);border-radius:100px;padding:8px 16px;cursor:default;transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease" style-hover="background:#43b3ae;color:#10201f;border-color:#43b3ae;transform:translateY(-2px)">HIPAA-compliant architecture</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase" data-screen-label="Product showcase" style="background:#f6f7f7;border-top:1px solid #ebecec">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(20px,5vw,56px) clamp(72px,9vw,120px)">
+      <div data-work-card="" data-work-href="https://dibhub.com/team-recovery-tech" data-reveal="" style="cursor:pointer;background:#ffffff;border:1px solid #e6e8e8;border-radius:12px;overflow:hidden;box-shadow:0 26px 60px rgba(31,31,37,0.08);transition:border-color .32s ease,box-shadow .32s ease,filter .32s ease,opacity .32s ease,transform .32s cubic-bezier(.2,.7,.3,1)" style-hover="border-color:#43b3ae;box-shadow:0 30px 68px rgba(31,31,37,0.14)">
+        <div data-work-frame="" style="position:relative;width:100%;aspect-ratio:16 / 9;overflow:hidden;padding:7px;transition:padding .42s cubic-bezier(.2,.7,.3,1)">
+          <image-slot fit="cover" data-work-img="" style="display:block;width:100%;height:100%" id="dh-cs-teamrecovery-hero" shape="rect" placeholder="Team Recovery Tech &mdash; alumni app screens (main product shot)"></image-slot>
+        </div>
+      </div>
+
+      <div data-reveal="" style="display:flex;justify-content:center;margin-top:clamp(28px,3.4vw,44px)">
+        <a href="https://dibhub.com/team-recovery-tech" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:11px;background:linear-gradient(100deg, #1f1f25 0%, #1f1f25 42%, #23726f 78%, #43b3ae 100%);color:#ffffff;font-size:16px;font-weight:700;letter-spacing:0.01em;padding:15px 31px;border:1.5px solid transparent;border-radius:100px;transition:filter .2s ease,transform .14s ease" style-hover="filter:brightness(1.08);transform:translateY(-3px) scale(1.03)" style-active="transform:translateY(0) scale(0.99)">Visit website
+          <span style="display:inline-block;width:16px;height:1.6px;background:currentColor;position:relative">
+            <span style="position:absolute;right:0;top:-3.5px;width:8px;height:8px;border-top:1.6px solid currentColor;border-right:1.6px solid currentColor;transform:rotate(45deg)"></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" data-screen-label="Challenge and solution" style="position:relative;overflow:hidden;background:#ffffff;border-top:1px solid #ebecec">
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,132px) clamp(20px,5vw,56px)">
+      <div data-reveal="" style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+        <span style="display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#1f1f25;padding-bottom:7px;border-bottom:2px solid #43b3ae">Challenge &amp; Solution</span>
+      </div>
+
+      <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(20px,4vw,64px);align-items:center;margin-bottom:clamp(44px,5vw,68px)">
+        <h2 style="margin:0;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-0.025em;font-weight:700;color:#1f1f25;max-width:18ch;text-wrap:balance">Alumni follow-up on spreadsheets and phone calls.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.7;color:#5c5c66;max-width:46ch;text-wrap:pretty">Three problems were limiting what centers could prove and sustain. Three capabilities replaced the manual work.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:{{ storyCols }};gap:clamp(20px,2.6vw,32px);align-items:stretch">
+        <div data-reveal="" style="display:flex;flex-direction:column;background:#ffffff;border:1px solid #e6e8e8;border-radius:12px;padding:clamp(24px,2.8vw,36px);box-shadow:0 20px 44px rgba(31,31,37,0.06)">
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#23726f">The Challenge</span>
+            <span style="flex:1 1 auto;height:1px;background:#e6e8e8"></span>
+          </div>
+          <div style="flex:1 1 auto;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:8px">
+            <div data-story-row="" style="display:flex;gap:14px;align-items:flex-start;padding:18px 16px;border-radius:8px;color:#1f1f25;transition:background .32s cubic-bezier(.2,.7,.3,1),color .32s ease,box-shadow .28s ease,transform .28s cubic-bezier(.2,.7,.3,1)">
+              <span style="flex:0 0 auto;width:30px;height:30px;margin-top:1px;border-radius:50%;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;font-size:13px;font-weight:700;transition:color .32s ease" data-story-icon="">01</span>
+              <div>
+                <h3 style="margin:0 0 5px;font-size:16.5px;font-weight:700;letter-spacing:-0.01em;color:inherit">Manual, fragmented outreach</h3>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:inherit;opacity:0.66;text-wrap:pretty">Alumni follow-up ran on spreadsheets and phone calls, with no record of who had been reached or when.</p>
+              </div>
+            </div>
+            <div data-story-row="" style="display:flex;gap:14px;align-items:flex-start;padding:18px 16px;border-radius:8px;color:#1f1f25;transition:background .32s cubic-bezier(.2,.7,.3,1),color .32s ease,box-shadow .28s ease,transform .28s cubic-bezier(.2,.7,.3,1)">
+              <span style="flex:0 0 auto;width:30px;height:30px;margin-top:1px;border-radius:50%;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;font-size:13px;font-weight:700;transition:color .32s ease" data-story-icon="">02</span>
+              <div>
+                <h3 style="margin:0 0 5px;font-size:16.5px;font-weight:700;letter-spacing:-0.01em;color:inherit">No unified outcome tracking</h3>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:inherit;opacity:0.66;text-wrap:pretty">Centers could not prove clinical effectiveness to insurers without pulling numbers together by hand.</p>
+              </div>
+            </div>
+            <div data-story-row="" style="display:flex;gap:14px;align-items:flex-start;padding:18px 16px;border-radius:8px;color:#1f1f25;transition:background .32s cubic-bezier(.2,.7,.3,1),color .32s ease,box-shadow .28s ease,transform .28s cubic-bezier(.2,.7,.3,1)">
+              <span style="flex:0 0 auto;width:30px;height:30px;margin-top:1px;border-radius:50%;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;font-size:13px;font-weight:700;transition:color .32s ease" data-story-icon="">03</span>
+              <div>
+                <h3 style="margin:0 0 5px;font-size:16.5px;font-weight:700;letter-spacing:-0.01em;color:inherit">No HIPAA-compliant tooling</h3>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:inherit;opacity:0.66;text-wrap:pretty">Sensitive health data was moving through channels never designed to carry it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="" style="display:flex;flex-direction:column;background:#ffffff;border:1px solid #e6e8e8;border-radius:12px;padding:clamp(24px,2.8vw,36px);box-shadow:0 20px 44px rgba(31,31,37,0.06)">
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#23726f">The Solution</span>
+            <span style="flex:1 1 auto;height:1px;background:#e6e8e8"></span>
+          </div>
+          <div style="flex:1 1 auto;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:8px">
+            <div data-story-row="" style="display:flex;gap:14px;align-items:flex-start;padding:18px 16px;border-radius:8px;color:#1f1f25;transition:background .32s cubic-bezier(.2,.7,.3,1),color .32s ease,box-shadow .28s ease,transform .28s cubic-bezier(.2,.7,.3,1)">
+              <span style="flex:0 0 auto;width:30px;height:30px;margin-top:1px;border-radius:50%;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;font-size:13px;font-weight:700;transition:color .32s ease" data-story-icon=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.4 4.4L19 7.4"/></svg></span>
+              <div>
+                <h3 style="margin:0 0 5px;font-size:16.5px;font-weight:700;letter-spacing:-0.01em;color:inherit">Automated alumni engagement</h3>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:inherit;opacity:0.66;text-wrap:pretty">Messaging and check-ins that run on their own, keeping alumni connected to the community after discharge.</p>
+              </div>
+            </div>
+            <div data-story-row="" style="display:flex;gap:14px;align-items:flex-start;padding:18px 16px;border-radius:8px;color:#1f1f25;transition:background .32s cubic-bezier(.2,.7,.3,1),color .32s ease,box-shadow .28s ease,transform .28s cubic-bezier(.2,.7,.3,1)">
+              <span style="flex:0 0 auto;width:30px;height:30px;margin-top:1px;border-radius:50%;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;font-size:13px;font-weight:700;transition:color .32s ease" data-story-icon=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.4 4.4L19 7.4"/></svg></span>
+              <div>
+                <h3 style="margin:0 0 5px;font-size:16.5px;font-weight:700;letter-spacing:-0.01em;color:inherit">Outcome tracking built for reporting</h3>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:inherit;opacity:0.66;text-wrap:pretty">Engagement and outcome data captured as it happens, ready to evidence effectiveness for reimbursement.</p>
+              </div>
+            </div>
+            <div data-story-row="" style="display:flex;gap:14px;align-items:flex-start;padding:18px 16px;border-radius:8px;color:#1f1f25;transition:background .32s cubic-bezier(.2,.7,.3,1),color .32s ease,box-shadow .28s ease,transform .28s cubic-bezier(.2,.7,.3,1)">
+              <span style="flex:0 0 auto;width:30px;height:30px;margin-top:1px;border-radius:50%;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;font-size:13px;font-weight:700;transition:color .32s ease" data-story-icon=""><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.4 4.4L19 7.4"/></svg></span>
+              <div>
+                <h3 style="margin:0 0 5px;font-size:16.5px;font-weight:700;letter-spacing:-0.01em;color:inherit">White-labeled, HIPAA-compliant platform</h3>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:inherit;opacity:0.66;text-wrap:pretty">A fully branded mobile app on HIPAA-compliant architecture, with communities live inside 90 days.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outcomes" data-screen-label="Outcomes" style="background:#f6f7f7;border-top:1px solid #ebecec">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,132px) clamp(20px,5vw,56px)">
+      <div data-reveal="" style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+        <span style="display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#1f1f25;padding-bottom:7px;border-bottom:2px solid #43b3ae">Highlights</span>
+      </div>
+
+      <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(20px,4vw,64px);align-items:center;margin-bottom:clamp(40px,5vw,60px)">
+        <h2 style="margin:0;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-0.025em;font-weight:700;color:#1f1f25;max-width:18ch;text-wrap:balance">What the platform changed.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.7;color:#5c5c66;max-width:46ch;text-wrap:pretty">Six capabilities carrying alumni engagement and reporting that used to sit with clinical staff.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:{{ outcomeCols }};gap:clamp(16px,2vw,24px)">
+        <div data-reveal="" data-benefit="" style="display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:clamp(24px,2.6vw,30px);color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+          <span data-benefit-icon="" style="width:46px;height:46px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8.4" r="3.2"/><path d="M3.6 19.4c0-3 2.4-5.4 5.4-5.4s5.4 2.4 5.4 5.4"/><path d="M16.4 6.2a3.2 3.2 0 0 1 0 6.2M17.6 19.4c0-2-.7-3.8-1.9-5"/></svg></span>
+          <h3 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:inherit">Alumni Engagement Tools</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:inherit;opacity:0.62;text-wrap:pretty">Messaging, check-ins and community features that keep alumni in contact long after discharge.</p>
+        </div>
+        <div data-reveal="" data-benefit="" style="display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:clamp(24px,2.6vw,30px);color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+          <span data-benefit-icon="" style="width:46px;height:46px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 20.4 7v5.4c0 4.4-3.4 7.6-8.4 9.2-5-1.6-8.4-4.8-8.4-9.2V7L12 3.2Z"/><path d="M9.6 11.6h4.8M12 9.2v4.8"/></svg></span>
+          <h3 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:inherit">White-Label Branding</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:inherit;opacity:0.62;text-wrap:pretty">The center&rsquo;s own name, colours and identity throughout, on iOS and Android.</p>
+        </div>
+        <div data-reveal="" data-benefit="" style="display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:clamp(24px,2.6vw,30px);color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+          <span data-benefit-icon="" style="width:46px;height:46px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="4.4" width="16.8" height="15.2" rx="2"/><path d="M8 15.6v-3.2M12 15.6V9.2M16 15.6v-5"/></svg></span>
+          <h3 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:inherit">Outcome Tracking &amp; Reporting</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:inherit;opacity:0.62;text-wrap:pretty">Engagement and recovery outcomes recorded as they happen, exportable for insurers and boards.</p>
+        </div>
+        <div data-reveal="" data-benefit="" style="display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:clamp(24px,2.6vw,30px);color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+          <span data-benefit-icon="" style="width:46px;height:46px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10.6" rx="2"/><path d="M7.8 10V7.2a4.2 4.2 0 0 1 8.4 0V10"/><path d="M12 14.2v2.4"/></svg></span>
+          <h3 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:inherit">HIPAA-Compliant Security</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:inherit;opacity:0.62;text-wrap:pretty">Architecture, access control and audit trails built to handle protected health information.</p>
+        </div>
+        <div data-reveal="" data-benefit="" style="display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:clamp(24px,2.6vw,30px);color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+          <span data-benefit-icon="" style="width:46px;height:46px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="4.6" width="16.8" height="15" rx="2"/><path d="M3.6 9.4h16.8M8.4 3.2v3M15.6 3.2v3"/><path d="m9.6 14 1.8 1.8 3.4-3.4"/></svg></span>
+          <h3 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:inherit">Appointment Scheduling</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:inherit;opacity:0.62;text-wrap:pretty">Follow-up appointments booked and reminded in-app, without a phone call from the front desk.</p>
+        </div>
+        <div data-reveal="" data-benefit="" style="display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;padding:clamp(24px,2.6vw,30px);color:#1f1f25;transition:background .38s cubic-bezier(.2,.7,.3,1),color .38s ease,border-color .38s ease,box-shadow .38s ease,transform .38s cubic-bezier(.2,.7,.3,1),filter .38s ease,opacity .38s ease">
+          <span data-benefit-icon="" style="width:46px;height:46px;flex:0 0 auto;border-radius:6px;background:rgba(67,179,174,0.13);border:1px solid rgba(67,179,174,0.32);display:flex;align-items:center;justify-content:center;color:#23726f;transition:color .38s ease"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6"/><path d="M20 12a8 8 0 0 1-13.7 5.6"/><path d="M17.8 3.4v3.2h-3.2M6.2 20.6v-3.2h3.2"/></svg></span>
+          <h3 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:inherit">Automated Workflows</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:inherit;opacity:0.62;text-wrap:pretty">Outreach sequences and follow-ups run on schedule, freeing staff from the manual list.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="more-work" data-screen-label="More projects" style="background:#ffffff;border-top:1px solid #ebecec">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,5vw,56px)">
+      <div data-reveal="" style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+        <span style="display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#1f1f25;padding-bottom:7px;border-bottom:2px solid #43b3ae">Other projects</span>
+      </div>
+
+      <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(20px,4vw,64px);align-items:center;margin-bottom:clamp(36px,4.5vw,56px)">
+        <h2 style="margin:0;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-0.025em;font-weight:700;color:#1f1f25;max-width:18ch;text-wrap:balance">More from our portfolio.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.7;color:#5c5c66;max-width:46ch;text-wrap:pretty">Open any project for the brief, the approach and what changed for the client.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:{{ projectCols }};gap:clamp(16px,2vw,28px);align-items:stretch">
+        <div data-work-card="" data-work-href="./DibHub Project - Barbr.dc.html" data-reveal="" style="cursor:pointer;display:flex;flex-direction:column;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;overflow:hidden;color:inherit;transition:border-color .32s ease,box-shadow .32s ease,filter .32s ease,opacity .32s ease,transform .32s cubic-bezier(.2,.7,.3,1)" style-hover="border-color:#43b3ae;box-shadow:0 20px 44px rgba(31,31,37,0.10)">
+          <div data-work-frame="" style="position:relative;width:100%;aspect-ratio:4 / 3;background:#ffffff;flex:0 0 auto;overflow:hidden;padding:7px;transition:padding .42s cubic-bezier(.2,.7,.3,1)">
+            <image-slot fit="contain" data-work-img="" style="display:block;width:100%;height:100%" id="dh-pf-barbr" shape="rect" placeholder="Barbr (Web &amp; App) &mdash; product screenshot"></image-slot>
+          </div>
+          <div style="padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:13px;flex:1 1 auto;color:inherit">
+            <div style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#23726f;background:#e9f5f4;border-radius:3px;padding:4px 9px">Web Design</span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#23726f;background:#e9f5f4;border-radius:3px;padding:4px 9px">Mobile App</span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#23726f;background:#e9f5f4;border-radius:3px;padding:4px 9px">Booking Platform</span></div>
+            <h3 style="margin:0;font-size:clamp(21px,2.1vw,26px);font-weight:700;letter-spacing:-0.02em;color:#1f1f25">Barbr <span style="color:#63636d;font-weight:500">(Web &amp; App)</span></h3>
+            <p style="margin:0;font-size:16px;line-height:1.62;color:#63636d;text-wrap:pretty">Barber Scheduling &amp; Business Growth Platform for Independent Grooming Professionals &mdash; one product across web and mobile, with the diary and deposits on the dashboard and booking, reminders and client history in the barber&rsquo;s pocket.</p>
+            <span style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;color:#1f1f25;margin-top:auto;padding-top:8px">View Project
+              <span style="display:inline-block;width:15px;height:1.6px;background:currentColor;position:relative">
+                <span style="position:absolute;right:0;top:-3.7px;width:8px;height:8px;border-top:1.6px solid currentColor;border-right:1.6px solid currentColor;transform:rotate(45deg)"></span>
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div data-work-card="" data-work-href="./DibHub Project - Merge.dc.html" data-reveal="" style="cursor:pointer;display:flex;flex-direction:column;background:#ffffff;border:1px solid #e6e8e8;border-radius:8px;overflow:hidden;color:inherit;transition:border-color .32s ease,box-shadow .32s ease,filter .32s ease,opacity .32s ease,transform .32s cubic-bezier(.2,.7,.3,1)" style-hover="border-color:#43b3ae;box-shadow:0 20px 44px rgba(31,31,37,0.10)">
+          <div data-work-frame="" style="position:relative;width:100%;aspect-ratio:4 / 3;background:#ffffff;flex:0 0 auto;overflow:hidden;padding:7px;transition:padding .42s cubic-bezier(.2,.7,.3,1)">
+            <image-slot fit="contain" data-work-img="" style="display:block;width:100%;height:100%" id="dh-pf-merge" shape="rect" placeholder="Merge &mdash; project screenshot"></image-slot>
+          </div>
+          <div style="padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:13px;flex:1 1 auto;color:inherit">
+            <div style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#23726f;background:#e9f5f4;border-radius:3px;padding:4px 9px">Node.js Development</span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#23726f;background:#e9f5f4;border-radius:3px;padding:4px 9px">Security</span></div>
+            <h3 style="margin:0;font-size:clamp(21px,2.1vw,26px);font-weight:700;letter-spacing:-0.02em;color:#1f1f25">Merge</h3>
+            <p style="margin:0;font-size:16px;line-height:1.62;color:#63636d;text-wrap:pretty">A hardened Node.js platform rebuilt for scale, with authentication, audit logging and dependency security brought up to standard.</p>
+            <span style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;color:#1f1f25;margin-top:auto;padding-top:8px">View Project
+              <span style="display:inline-block;width:15px;height:1.6px;background:currentColor;position:relative">
+                <span style="position:absolute;right:0;top:-3.7px;width:8px;height:8px;border-top:1.6px solid currentColor;border-right:1.6px solid currentColor;transform:rotate(45deg)"></span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-screen-label="Contact CTA" data-spot-host="" style="position:relative;overflow:hidden;background:#ffffff;border-top:1px solid #ebecec">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(31,31,37,0.10) 1px, transparent 1px);background-size:26px 26px;pointer-events:none"></div>
+    <div data-spot="" style="position:absolute;top:0;left:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:radial-gradient(circle, rgba(67,179,174,0.30) 0%, rgba(67,179,174,0.08) 42%, transparent 68%);pointer-events:none;opacity:0;transform:translate3d(-999px,-999px,0);transition:opacity .5s ease"></div>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,124px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,4vw,64px);align-items:center">
+      <div data-reveal="">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <span style="display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#1f1f25;padding-bottom:7px;border-bottom:2px solid #43b3ae">Get started</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-0.025em;font-weight:700;color:#1f1f25;max-width:16ch;text-wrap:balance">Book a free consultation.</h2>
+        <p style="margin:20px 0 0;font-size:17px;line-height:1.7;color:#5c5c66;max-width:46ch;text-wrap:pretty">Thirty minutes with an engineer, not a salesperson. Bring the problem — you'll leave with an honest read on scope, approach and cost.</p>
+      </div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:14px">
+        <a href="./DibHub Contact.dc.html" style="display:inline-flex;align-items:center;gap:11px;background:linear-gradient(100deg, #1f1f25 0%, #1f1f25 42%, #23726f 78%, #43b3ae 100%);color:#ffffff;font-size:16px;font-weight:700;letter-spacing:0.01em;padding:15px 31px;border:1.5px solid transparent;border-radius:100px;transition:filter .2s ease,transform .14s ease" style-hover="filter:brightness(1.08);transform:translateY(-3px) scale(1.03)" style-active="transform:translateY(0) scale(0.99)">Schedule now
+          <span style="display:inline-block;width:16px;height:1.6px;background:currentColor;position:relative">
+            <span style="position:absolute;right:0;top:-3.5px;width:8px;height:8px;border-top:1.6px solid currentColor;border-right:1.6px solid currentColor;transform:rotate(45deg)"></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" style="background:#1f1f25;color:rgba(255,255,255,0.72);border-top:1px solid rgba(255,255,255,0.10)">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,7vw,88px) clamp(20px,5vw,56px) 0">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(32px,4vw,56px)">
+        <div style="max-width:34ch">
+          <img src="./assets/dibhub-logo.png" alt="DibHub" style="height:30px;width:auto;margin-bottom:22px">
+          <p style="margin:0;font-size:15.5px;line-height:1.7;color:rgba(255,255,255,0.55)">Dibhub is a leading IT solutions company that provides innovative technology services to businesses of all sizes.</p>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ffffff">Services</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="./DibHub Service - AI & ML.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">AI &amp; Machine Learning</a>
+            <a href="./DibHub Service - Client Driven Solutions.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Client Driven Solutions</a>
+            <a href="./DibHub Service - Web Development.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Web Development</a>
+            <a href="./DibHub Service - Mobile Applications.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Mobile Applications</a>
+            <a href="#top" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">DevOps &amp; Cloud Engineering</a>
+            <a href="./DibHub Service - QA Automation.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">QA Automation</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ffffff">Company</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="./DibHub Home.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Home</a>
+            <a href="./DibHub Portfolio.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Portfolio</a>
+            <a href="./DibHub About.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">About us</a>
+            <a href="./DibHub Team.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Our Team</a>
+            <a href="./DibHub Contact.dc.html" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ffffff">Get in touch</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="mailto:hello@dibhub.com" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">hello@dibhub.com</a>
+            <a href="https://www.linkedin.com/company/dibhub" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">LinkedIn</a>
+            <a href="https://www.instagram.com/dib_hub/" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Instagram</a>
+            <a href="https://www.facebook.com/dibhub" style="font-size:15px;color:rgba(255,255,255,0.6);transition:color .2s ease" style-hover="color:#43b3ae">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:clamp(44px,5vw,64px);border-top:1px solid rgba(255,255,255,0.10);padding:24px 0 28px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center">
+        <span style="font-size:14px;color:rgba(255,255,255,0.6)">© 2026 Dibhub. All rights reserved.</span>
+        <span style="font-size:14px;color:rgba(255,255,255,0.6)">Dedicated Innovative Brains Hub</span>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" id="dh-top" onClick="{{ toTop }}" aria-label="Back to top" style="position:fixed;right:clamp(16px,2.5vw,32px);bottom:clamp(16px,2.5vw,32px);z-index:60;width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);background:#1f1f25;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px) scale(0.9);pointer-events:none;box-shadow:0 12px 30px rgba(31,31,37,0.26);transition:opacity .32s ease,transform .32s cubic-bezier(.2,.7,.3,1),background .22s ease" style-hover="background:#43b3ae">
+    <span style="display:block;width:9px;height:9px;border-top:2px solid #ffffff;border-left:2px solid #ffffff;transform:rotate(45deg) translate(1.5px,1.5px)"></span>
+  </button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, menuOpen: false };
+
+  componentDidMount() {
+    this._onResize = () => {
+      const w = window.innerWidth;
+      if (w !== this.state.w) this.setState({ w, menuOpen: w >= 900 ? false : this.state.menuOpen });
+    };
+    window.addEventListener('resize', this._onResize);
+    this._seen = new WeakSet();
+    this.setupReveal();
+    this._fallback = setTimeout(() => { if (!this._io) this.revealAll(); }, 1800);
+
+    this._onScroll = () => {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(() => {
+        this._raf = null;
+        const y = window.scrollY || 0;
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const bar = document.getElementById('dh-progress');
+        if (bar) bar.style.transform = 'scaleX(' + Math.min(1, y / max) + ')';
+        this.paintHeader();
+        const btn = document.getElementById('dh-top');
+        if (btn) {
+          const on = y > 520;
+          btn.style.opacity = on ? '1' : '0';
+          btn.style.transform = on ? 'none' : 'translateY(16px) scale(0.9)';
+          btn.style.pointerEvents = on ? 'auto' : 'none';
+        }
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+
+    this.setupInteractions();
+  }
+
+  setupInteractions() {
+    if (!this._stepSeen) this._stepSeen = new WeakSet();
+    this.wirePopGroup('[data-pop]', '[data-pop-icon]');
+    this.wirePopGroup('[data-benefit]', '[data-benefit-icon]');
+    this.wirePopGroup('[data-cap]', '[data-cap-icon]');
+    this.wireServicesMenu();
+    this.setupHeroGlow();
+    this.setupWorkCards();
+    this.setupCardHover();
+    this.setupWorkDim();
+    this.setupStoryRows();
+    this.typeHero();
+  }
+
+  typeHero() {
+    if (this._typed || this.reduced()) return;
+    const words = [...document.querySelectorAll('#dh-hero-h1 [data-type-word]')];
+    if (!words.length) return;
+    this._typed = true;
+    const per = 0.085;
+    const caret = document.querySelector('#dh-hero-h1 [data-type-caret]');
+    if (caret) caret.style.animation = 'none';
+    let i = 0;
+    words.forEach((w) => {
+      const text = w.textContent;
+      w.textContent = '';
+      for (const ch of text) {
+        const s = document.createElement('span');
+        s.textContent = ch;
+        s.style.display = 'inline';
+        const at = 0.1 + i * per;
+        s.style.opacity = '0';
+        w.appendChild(s);
+        setTimeout(() => {
+          s.style.opacity = '1';
+          if (caret) s.after(caret);
+        }, at * 1000);
+        i += 1;
+      }
+      w.setAttribute('data-type-text', text);
+    });
+    const end = 0.1 + i * per;
+    setTimeout(() => {
+      if (caret) {
+        document.getElementById('dh-hero-h1').appendChild(caret);
+        caret.style.animation = 'dh-caret 1s step-end infinite both';
+      }
+    }, (end + 0.15) * 1000);
+  }
+
+  paintHeader() {
+    const hd = document.getElementById('dh-header');
+    const hero = document.getElementById('top');
+    if (!hd) return;
+    if (!this._navSeen) {
+      this._navSeen = true;
+      hd.addEventListener('mouseenter', () => { this._navHover = true; this.paintHeader(); });
+      hd.addEventListener('mouseleave', () => { this._navHover = false; this.paintHeader(); });
+    }
+    const y = window.scrollY || 0;
+    const overHero = !!hero && y < hero.offsetHeight - 72;
+    const clear = overHero && y <= 6 && !this._navHover && !this.state.menuOpen;
+
+    hd.style.background = clear ? 'transparent' : 'rgba(255,255,255,0.9)';
+    hd.style.backdropFilter = clear ? 'none' : 'blur(14px)';
+    hd.style.webkitBackdropFilter = clear ? 'none' : 'blur(14px)';
+    hd.style.borderBottomColor = clear ? 'rgba(255,255,255,0.14)' : '#ebebee';
+    hd.style.boxShadow = !clear && y > 8 ? '0 1px 24px rgba(31,31,37,0.09)' : 'none';
+
+    hd.querySelectorAll('[data-nav-link]').forEach((a) => {
+      const active = a.getAttribute('data-nav-link') === 'active';
+      a.style.color = clear ? (active ? '#ffffff' : 'rgba(255,255,255,0.78)') : (active ? '#1f1f25' : '#4a4a52');
+    });
+    hd.querySelectorAll('[data-nav-social]').forEach((a) => {
+      a.style.color = clear ? 'rgba(255,255,255,0.85)' : '#4a4a52';
+    });
+    const burger = hd.querySelector('[data-burger]');
+    if (burger) burger.style.borderColor = clear ? 'rgba(255,255,255,0.3)' : '#e2e2e6';
+    hd.querySelectorAll('[data-burger-bar]').forEach((b) => { b.style.background = clear ? '#ffffff' : '#1f1f25'; });
+  }
+
+  setServices(open) {
+    const panel = document.querySelector('[data-svc-panel]');
+    const chev = document.querySelector('[data-svc-chev]');
+    if (!panel) return;
+    const header = document.getElementById('dh-header');
+    if (header) panel.style.top = (header.getBoundingClientRect().bottom + 14) + 'px';
+    panel.style.opacity = open ? '1' : '0';
+    panel.style.visibility = open ? 'visible' : 'hidden';
+    panel.style.pointerEvents = open ? 'auto' : 'none';
+    panel.style.transform = open ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-8px)';
+    if (chev) chev.style.transform = open ? 'rotate(180deg)' : 'none';
+  }
+
+  openSvc() {
+    clearTimeout(this._svcTimer);
+    this.setServices(true);
+  }
+
+  closeSvc(delay) {
+    clearTimeout(this._svcTimer);
+    this._svcTimer = setTimeout(() => this.setServices(false), delay == null ? 260 : delay);
+  }
+
+  wireServicesMenu() {
+    const wrap = document.querySelector('[data-svc-wrap]');
+    if (!wrap || wrap.dataset.svcWired) return;
+    wrap.dataset.svcWired = '1';
+    wrap.addEventListener('mouseenter', () => this.openSvc());
+    wrap.addEventListener('mouseleave', () => this.closeSvc());
+    const panel = wrap.querySelector('[data-svc-panel]');
+    if (panel) {
+      panel.addEventListener('mouseenter', () => this.openSvc());
+      panel.addEventListener('mouseleave', () => this.closeSvc());
+      panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => this.closeSvc(0)));
+    }
+    document.querySelectorAll('#dh-header nav a[data-nav-link]').forEach((a) => {
+      if (a.hasAttribute('data-svc-trigger')) return;
+      a.addEventListener('mouseenter', () => this.closeSvc(0));
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.setServices(false); });
+  }
+
+  wirePopGroup(cardSel, iconSel) {
+    const cards = [...document.querySelectorAll(cardSel)];
+    if (!cards.length) return;
+    const seen = this._stepSeen;
+    const paint = (el) => {
+      cards.forEach((o) => {
+        const on = o === el;
+        o.style.transform = on ? 'translateY(-6px) scale(1.035)' : 'scale(0.985)';
+        o.style.filter = on ? 'none' : 'blur(2px)';
+        o.style.opacity = on ? '1' : '0.45';
+        o.style.background = on ? '#1f1f25' : '#ffffff';
+        o.style.color = on ? '#ffffff' : '#1f1f25';
+        o.style.borderColor = on ? '#1f1f25' : '#e6e8e8';
+        o.style.boxShadow = on ? '0 24px 54px rgba(31,31,37,0.18)' : 'none';
+        const t = o.querySelector(iconSel);
+        if (t) t.style.color = on ? '#43b3ae' : '#23726f';
+      });
+    };
+    cards.forEach((el) => {
+      if (seen.has(el)) return;
+      seen.add(el);
+      el.addEventListener('mouseenter', () => {
+        if (this.reduced()) return;
+        paint(el);
+      });
+    });
+    const wrap = cards[0].parentElement;
+    if (wrap && !seen.has(wrap)) {
+      seen.add(wrap);
+      wrap.addEventListener('mouseleave', () => {
+        cards.forEach((o) => {
+          o.style.transform = '';
+          o.style.filter = '';
+          o.style.opacity = '';
+          o.style.background = '#ffffff';
+          o.style.color = '#1f1f25';
+          o.style.borderColor = '#e6e8e8';
+          o.style.boxShadow = 'none';
+          const t = o.querySelector(iconSel);
+          if (t) t.style.color = '#23726f';
+        });
+      });
+    }
+  }
+
+  setupStoryRows() {
+    if (!this._rowSeen) this._rowSeen = new WeakSet();
+    document.querySelectorAll('[data-story-row]').forEach((row) => {
+      if (this._rowSeen.has(row)) return;
+      this._rowSeen.add(row);
+      const icon = row.querySelector('[data-story-icon]');
+      row.style.transition = row.style.transition + ',filter .32s ease,opacity .32s ease';
+      const siblings = () => Array.from(row.parentElement ? row.parentElement.querySelectorAll('[data-story-row]') : []).filter((r) => r !== row);
+      const on = () => {
+        if (this.reduced()) return;
+        row.style.background = '#1f1f25';
+        row.style.color = '#ffffff';
+        row.style.boxShadow = '0 16px 34px rgba(31,31,37,0.18)';
+        row.style.transform = 'translateX(6px) scale(1.015)';
+        row.style.filter = '';
+        row.style.opacity = '';
+        if (icon) icon.style.color = '#43b3ae';
+        siblings().forEach((r) => { r.style.filter = 'blur(2.4px)'; r.style.opacity = '0.5'; });
+      };
+      const off = () => {
+        row.style.background = '';
+        row.style.color = '#1f1f25';
+        row.style.boxShadow = '';
+        row.style.transform = '';
+        if (icon) icon.style.color = '#23726f';
+        siblings().forEach((r) => { r.style.filter = ''; r.style.opacity = ''; });
+      };
+      row.addEventListener('mouseenter', on);
+      row.addEventListener('mouseleave', off);
+    });
+  }
+
+  setupWorkCards() {
+    if (!this._cardSeen) this._cardSeen = new WeakSet();
+    document.querySelectorAll('[data-work-card]').forEach((card) => {
+      if (this._cardSeen.has(card)) return;
+      this._cardSeen.add(card);
+      const href = card.getAttribute('data-work-href');
+      if (!href) return;
+      card.setAttribute('role', 'link');
+      card.setAttribute('tabindex', '0');
+      const external = /^https?:/i.test(href);
+      const go = () => {
+        if (external) window.open(href, '_blank', 'noopener');
+        else window.location.href = href;
+      };
+      card.addEventListener('click', (e) => {
+        const path = typeof e.composedPath === 'function' ? e.composedPath() : [e.target];
+        const blocked = path.some((n) => n && n.nodeType === 1 && (n.tagName === 'A' || n.tagName === 'BUTTON' || n.tagName === 'INPUT'));
+        if (!blocked) go();
+      });
+      card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+  }
+
+  setupCardHover() {
+    if (!this._hoverSeen) this._hoverSeen = new WeakSet();
+    document.querySelectorAll('[data-work-frame]').forEach((frame) => {
+      const card = frame.closest('[data-work-card]');
+      if (!card || this._hoverSeen.has(card)) return;
+      this._hoverSeen.add(card);
+      const img = frame.querySelector('[data-work-img]');
+      if (!img) return;
+      const set = (v) => { if (!this.reduced()) frame.style.padding = v; };
+      card.addEventListener('mouseenter', () => set('0px'));
+      card.addEventListener('mouseleave', () => set('7px'));
+      card.addEventListener('focus', () => set('0px'));
+      card.addEventListener('blur', () => set('7px'));
+    });
+  }
+
+  setupWorkDim() {
+    const cards = [...document.querySelectorAll('#more-work [data-work-card]')];
+    if (!cards.length) return;
+    if (!this._dimSeen) this._dimSeen = new WeakSet();
+    const clear = () => cards.forEach((o) => { o.style.filter = ''; o.style.opacity = ''; o.style.transform = ''; });
+    cards.forEach((el) => {
+      if (this._dimSeen.has(el)) return;
+      this._dimSeen.add(el);
+      el.addEventListener('mouseenter', () => {
+        if (this.reduced()) return;
+        cards.forEach((o) => {
+          const on = o === el;
+          o.style.filter = on ? 'none' : 'blur(2px)';
+          o.style.opacity = on ? '1' : '0.45';
+          o.style.transform = on ? 'none' : 'scale(0.985)';
+        });
+      });
+      el.addEventListener('mouseleave', clear);
+    });
+    const section = document.getElementById('more-work');
+    if (section && !this._dimSeen.has(section)) {
+      this._dimSeen.add(section);
+      section.addEventListener('mouseleave', clear);
+    }
+  }
+
+  setupHeroGlow() {
+    if (!this._spotSeen) this._spotSeen = new WeakSet();
+    const glow = document.getElementById('dh-glow');
+    document.querySelectorAll('[data-spot-host]').forEach((host) => {
+      if (this._spotSeen.has(host)) return;
+      const spot = host.querySelector('[data-spot]');
+      if (!spot) return;
+      this._spotSeen.add(host);
+      host.addEventListener('pointermove', (e) => {
+        if (this.reduced()) return;
+        const r = host.getBoundingClientRect();
+        spot.style.opacity = '1';
+        spot.style.transform = 'translate3d(' + (e.clientX - r.left) + 'px,' + (e.clientY - r.top) + 'px,0)';
+        if (glow && host.id === 'top') glow.style.opacity = '0.65';
+      });
+      host.addEventListener('pointerleave', () => {
+        spot.style.opacity = '0';
+        if (glow && host.id === 'top') glow.style.opacity = '';
+      });
+    });
+  }
+
+  componentDidUpdate() { this.setupReveal(); this.setupInteractions(); this.paintHeader(); }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this._onScroll);
+    clearTimeout(this._fallback);
+    clearTimeout(this._svcTimer);
+    if (this._io) this._io.disconnect();
+  }
+
+  reduced() {
+    return typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  revealTransition(el, dur, delay) {
+    const authored = this._authored ? this._authored.get(el) : '';
+    const t = 'opacity ' + dur + ' cubic-bezier(.2,.7,.3,1) ' + delay + 'ms, transform ' + dur + ' cubic-bezier(.2,.7,.3,1) ' + delay + 'ms';
+    el.style.transition = authored ? t + ', ' + authored : t;
+  }
+
+  show(el) {
+    const d = (this._delays && this._delays.get(el)) || 0;
+    this.revealTransition(el, '.95s', d);
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  }
+
+  hide(el) {
+    this.revealTransition(el, '.5s', 0);
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(56px) scale(0.94)';
+  }
+
+  revealAll() {
+    document.querySelectorAll('[data-reveal]').forEach((el) => this.show(el));
+  }
+
+  setupReveal() {
+    const nodes = document.querySelectorAll('[data-reveal]');
+    if (!nodes.length) return;
+    if (this.reduced() || typeof IntersectionObserver === 'undefined') { this.revealAll(); return; }
+    if (!this._io) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) this.show(e.target); else this.hide(e.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }
+    if (!this._authored) { this._authored = new WeakMap(); this._delays = new WeakMap(); }
+    nodes.forEach((el) => {
+      if (this._seen.has(el)) return;
+      this._seen.add(el);
+      const sibs = el.parentElement ? [...el.parentElement.children].filter((c) => c.hasAttribute('data-reveal')) : [el];
+      const d = Math.min(Math.max(0, sibs.indexOf(el)) * 130, 520);
+      const authored = el.style.transition || '';
+      this._authored.set(el, authored);
+      this._delays.set(el, d);
+      const reveal = 'opacity .95s cubic-bezier(.16,.84,.3,1) ' + d + 'ms, transform .95s cubic-bezier(.16,.84,.3,1) ' + d + 'ms';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(56px) scale(0.94)';
+      el.style.willChange = 'opacity, transform';
+      el.style.transition = authored ? reveal + ', ' + authored : reveal;
+      this._io.observe(el);
+    });
+  }
+
+  renderVals() {
+    const isDesktop = this.state.w >= 900;
+    return {
+      openServices: () => this.openSvc(),
+      closeServices: () => this.closeSvc(),
+      isDesktop,
+      isMobile: !isDesktop,
+      outcomeCols: this.state.w >= 1120 ? 'repeat(3,minmax(0,1fr))' : (this.state.w >= 640 ? 'repeat(2,minmax(0,1fr))' : 'repeat(1,minmax(0,1fr))'),
+      projectCols: this.state.w >= 760 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      storyCols: this.state.w >= 980 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      shotCols: this.state.w >= 700 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      menuOpen: !isDesktop && this.state.menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      toTop: () => window.scrollTo({ top: 0, behavior: this.reduced() ? 'auto' : 'smooth' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+// =============================================================================
+// default / index
+// Single entry point for the design foundation. Any partial that needs tokens
+// or mixins should pull them in with:  @use 'default' as *;
+// =============================================================================
+
+@forward 'variables';
+@forward 'mixins';
+@forward 'typography';
+@forward 'spacing';
+@forward 'animations';

@@ -1,0 +1,359 @@
+// =============================================================================
+// Fixed header, desktop nav, services mega-menu, mobile menu, scroll progress
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: $z-header;
+  background: $header-bg;
+  backdrop-filter: blur($header-blur);
+  -webkit-backdrop-filter: blur($header-blur);
+  border-bottom: 1px solid $color-border-soft;
+  transition:
+    box-shadow 0.3s ease,
+    background 0.32s ease,
+    border-color 0.32s ease;
+}
+
+// Sitting over the top of a dark hero: drop the plate, let the nav go white.
+.dh-header--clear {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: $color-on-dark-border;
+}
+
+.dh-header--solid {
+  background: $header-bg-scrolled;
+}
+
+.dh-header--raised {
+  box-shadow: $header-shadow;
+}
+
+.dh-header-bar {
+  @include container;
+  height: $header-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.dh-header-logo {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+  min-width: 0;
+
+  img {
+    height: 27px;
+    width: auto;
+  }
+}
+
+.dh-header-end {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+// --- Primary nav -------------------------------------------------------------
+
+.dh-nav {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+}
+
+.dh-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: $fs-nav;
+  font-weight: 500;
+  color: $color-nav;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.28s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    color: $color-ink;
+    border-bottom-color: $color-accent;
+  }
+
+  &.is-active {
+    font-weight: 600;
+    color: $color-ink;
+    border-bottom-color: $color-accent;
+  }
+}
+
+.dh-nav-link--contact {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-left: 16px;
+}
+
+.dh-header--clear .dh-nav-link {
+  color: $color-on-dark-nav;
+
+  &.is-active,
+  &:hover {
+    color: $color-on-dark;
+  }
+}
+
+.dh-nav-chevron {
+  display: inline-flex;
+  transition: transform 0.28s ease;
+
+  &.is-open {
+    transform: rotate(180deg);
+  }
+}
+
+.dh-nav-services {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dh-nav-social {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-nav;
+  transition:
+    color 0.24s ease,
+    transform 0.24s ease;
+
+  &:hover {
+    color: $color-accent;
+    transform: translateY(-2px);
+  }
+}
+
+.dh-header--clear .dh-nav-social {
+  color: $color-on-dark-social;
+}
+
+// --- Services mega-menu ------------------------------------------------------
+
+.dh-mega {
+  position: fixed;
+  top: #{$header-height + 4px};
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  width: min(1040px, calc(100vw - 32px));
+  max-height: calc(100vh - 96px);
+  overflow: auto;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-panel;
+  box-shadow: $shadow-panel;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: $z-float;
+  transition:
+    opacity 0.26s ease,
+    transform 0.26s $ease-out-soft,
+    visibility 0.26s;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.dh-cap {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px;
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-cap-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-cap-icon {
+  @include icon-tile(38px);
+}
+
+.dh-cap-text {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.dh-cap-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: inherit;
+}
+
+.dh-cap-blurb {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: inherit;
+  opacity: 0.66;
+}
+
+// --- Burger + mobile menu ----------------------------------------------------
+
+.dh-burger {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid $color-border-input;
+  border-radius: $radius-md;
+  cursor: pointer;
+  padding: 0;
+}
+
+.dh-burger-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: $color-ink;
+  transition: background 0.28s ease;
+}
+
+.dh-header--clear .dh-burger {
+  border-color: rgba(255, 255, 255, 0.3);
+
+  .dh-burger-bar {
+    background: $color-on-dark;
+  }
+}
+
+.dh-mobile-menu {
+  border-top: 1px solid $color-border-soft;
+  background: $color-bg;
+  padding: 14px $container-pad 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: calc(100vh - #{$header-height});
+  overflow-y: auto;
+}
+
+.dh-mobile-link {
+  font-size: 17px;
+  font-weight: 500;
+  color: $color-ink-soft;
+  padding: 13px 0;
+  border-bottom: 1px solid $color-border-hairline;
+}
+
+.dh-mobile-link--home {
+  font-weight: 600;
+  color: $color-ink;
+}
+
+.dh-mobile-group {
+  display: flex;
+  flex-direction: column;
+  padding: 13px 0;
+  border-bottom: 1px solid $color-border-hairline;
+}
+
+.dh-mobile-group-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: $color-ink-soft;
+  margin-bottom: 6px;
+}
+
+.dh-mobile-sublink {
+  font-size: $fs-nav;
+  font-weight: 500;
+  color: $color-nav-sub;
+  padding: 10px 0 10px 14px;
+  border-left: 2px solid $color-border;
+}
+
+.dh-mobile-cta {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-ink;
+  color: $color-on-dark;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 22px;
+  border-radius: $radius-md;
+
+  &:hover {
+    color: $color-on-dark;
+  }
+}
+
+// --- Scroll progress ---------------------------------------------------------
+
+.dh-progress-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.dh-progress-bar {
+  height: 100%;
+  width: 100%;
+  background: $color-accent;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.12s linear;
+}

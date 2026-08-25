@@ -1,0 +1,186 @@
+// =============================================================================
+// Hero — dark video banner with drifting glow, cursor spotlight and typed h1
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-hero {
+  position: relative;
+  background: $color-ink;
+  color: $color-on-dark;
+  overflow: hidden;
+}
+
+.dh-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.42;
+  pointer-events: none;
+  transition: opacity 0.5s linear;
+}
+
+.dh-hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(31, 31, 37, 0.94) 0%,
+    rgba(31, 31, 37, 0.78) 45%,
+    rgba(31, 31, 37, 0.62) 100%
+  );
+}
+
+.dh-hero-glow {
+  position: absolute;
+  top: -280px;
+  right: -160px;
+  width: 760px;
+  height: 760px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(67, 179, 174, 0.3) 0%,
+    rgba(67, 179, 174, 0.06) 45%,
+    transparent 70%
+  );
+}
+
+.dh-hero-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: $color-on-dark-rule;
+}
+
+// Cursor-following disc, shared with the CTA section.
+.dh-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 420px;
+  margin: -210px 0 0 -210px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-999px, -999px, 0);
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    circle,
+    rgba(67, 179, 174, 0.2) 0%,
+    rgba(67, 179, 174, 0.05) 42%,
+    transparent 68%
+  );
+}
+
+.dh-spotlight--light {
+  background: radial-gradient(
+    circle,
+    rgba(67, 179, 174, 0.3) 0%,
+    rgba(67, 179, 174, 0.08) 42%,
+    transparent 68%
+  );
+}
+
+.dh-hero-inner {
+  position: relative;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: $hero-pad-top $container-pad $hero-pad-bottom;
+}
+
+.dh-hero .dh-eyebrow-row {
+  margin-bottom: clamp(24px, 3vw, 34px);
+  gap: 14px;
+}
+
+.dh-hero-title {
+  margin: 0;
+  max-width: 15ch;
+  font-size: $fs-h1;
+  line-height: 1.02;
+  letter-spacing: -0.033em;
+  font-weight: 700;
+  color: $color-on-dark;
+  text-wrap: balance;
+}
+
+// Words are inline-block so a reveal never breaks one across two lines.
+.dh-word {
+  display: inline-block;
+  will-change: transform, filter;
+}
+
+.dh-word--accent {
+  color: $color-accent;
+}
+
+.dh-char {
+  display: inline;
+}
+
+.dh-hero-lead {
+  margin: clamp(24px, 3vw, 32px) 0 0;
+  max-width: 58ch;
+  font-size: $fs-hero-lead;
+  line-height: 1.7;
+  color: $color-on-dark-dim;
+  text-wrap: pretty;
+}
+
+// --- Inner-page hero ---------------------------------------------------------
+// Dark banner shared by the pages that open on a heading rather than the video
+// hero. Reuses .dh-hero-glow / .dh-spotlight / .dh-hero-rule from above.
+
+.dh-page-hero {
+  position: relative;
+  background: $color-ink;
+  color: $color-on-dark;
+  overflow: hidden;
+}
+
+.dh-page-hero-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.085) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.dh-page-hero-inner {
+  position: relative;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: $hero-pad-top-inner $container-pad $hero-pad-bottom-inner;
+}
+
+.dh-page-hero .dh-eyebrow-row {
+  margin-bottom: clamp(22px, 3vw, 32px);
+}
+
+.dh-page-hero-title {
+  margin: 0;
+  max-width: 20ch;
+  font-size: $fs-h1-inner;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: $color-on-dark;
+  text-wrap: balance;
+}
+
+.dh-page-hero-lead {
+  margin: clamp(22px, 3vw, 30px) 0 0;
+  max-width: 56ch;
+  font-size: $fs-hero-lead-inner;
+  line-height: 1.7;
+  color: $color-on-dark-muted;
+  text-wrap: pretty;
+}

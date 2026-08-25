@@ -1,0 +1,25 @@
+// =============================================================================
+// style.scss
+// The one stylesheet loaded by src/app/layout.js. Nothing else imports SCSS.
+// Order matters: foundation first, then one @use per section partial.
+// =============================================================================
+
+// --- Foundation: variables, mixins, typography, spacing, animations ---------
+@use 'default' as *;
+
+// --- Elements: one partial per section -------------------------------------
+@use 'elements/button';
+@use 'elements/header';
+@use 'elements/banner';
+@use 'elements/portfolio';
+@use 'elements/process';
+@use 'elements/services';
+@use 'elements/cta';
+@use 'elements/footer';
+@use 'elements/back-to-top';
+
+// Reserved for pages whose designs have not been handed over yet.
+@use 'elements/testimonials';
+@use 'elements/about';
+@use 'elements/contact';
+@use 'elements/team';

@@ -1,0 +1,48 @@
+// =============================================================================
+// Floating back-to-top button — appears past 520px of scroll
+// =============================================================================
+
+@use 'default' as *;
+
+.dh-to-top {
+  position: fixed;
+  right: clamp(16px, 2.5vw, 32px);
+  bottom: clamp(16px, 2.5vw, 32px);
+  z-index: $z-float;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid $color-on-dark-border;
+  background: $color-ink;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-float;
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity 0.32s ease,
+    transform 0.32s $ease-out-soft,
+    background 0.22s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background: $color-accent;
+  }
+}
+
+.dh-to-top-chevron {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid $color-on-dark;
+  border-left: 2px solid $color-on-dark;
+  transform: rotate(45deg) translate(1.5px, 1.5px);
+}

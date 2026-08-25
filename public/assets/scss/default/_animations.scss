@@ -1,0 +1,46 @@
+// =============================================================================
+// Keyframes & motion guards
+//
+// Entrance/scroll motion is owned by Framer Motion (src/components/motion).
+// What lives here is the small set of looping CSS effects and the global
+// reduced-motion clamp the design source applies.
+// =============================================================================
+
+@use 'variables' as *;
+
+// Blinking caret at the end of the hero headline.
+@keyframes dh-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.dh-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.82em;
+  margin-left: 0.1em;
+  vertical-align: -0.06em;
+  background: $color-accent;
+}
+
+.dh-caret--blinking {
+  animation: dh-caret 1s step-end infinite both;
+}
+
+// The source collapses every duration rather than removing motion outright.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
