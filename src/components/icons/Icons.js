@@ -344,6 +344,39 @@ export function IconInternalDashboard(props) {
   );
 }
 
+// --- Mobile application capabilities -----------------------------------------
+// "MVP Builds" reuses IconBoostEfficiency — the reference draws both with the
+// same bolt path, so there is no second glyph to add.
+
+export function IconCrossPlatform(props) {
+  return (
+    <Svg {...props}>
+      <rect x="2.8" y="3.4" width="9" height="17.2" rx="2" />
+      <rect x="13.8" y="7.4" width="7.4" height="13.2" rx="1.8" />
+      <path d="M6.4 18h1.8M16.6 18h1.8" />
+    </Svg>
+  );
+}
+
+export function IconApiIntegration(props) {
+  return (
+    <Svg {...props}>
+      <path d="M9.6 4.6 5 12l4.6 7.4M14.4 4.6 19 12l-4.6 7.4" />
+      <path d="M13 8.4l-2 7.2" />
+    </Svg>
+  );
+}
+
+export function IconStoreRelease(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3.4v11.4" />
+      <path d="m7.6 10.6 4.4 4.4 4.4-4.4" />
+      <path d="M4.6 18.4h14.8" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
