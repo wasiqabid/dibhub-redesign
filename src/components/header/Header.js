@@ -137,30 +137,40 @@ export default function Header() {
           <>
             <nav className="dh-nav" aria-label="Primary">
               {PRIMARY_LINKS.map((link) =>
-                link.hasMegaMenu && showServicesMenu ? (
+                link.hasMegaMenu ? (
+                  // The Services item keeps its wrapper and chevron on every
+                  // route. On /services the chevron is only hidden, never
+                  // removed, so the item keeps its width and the rest of the
+                  // nav does not shift when the dropdown is dropped.
                   <div
                     key={link.href}
                     className="dh-nav-services"
-                    onMouseEnter={openServices}
-                    onMouseLeave={() => closeServices()}
-                    onFocus={openServices}
-                    onBlur={handleServicesBlur}
+                    onMouseEnter={showServicesMenu ? openServices : undefined}
+                    onMouseLeave={showServicesMenu ? () => closeServices() : undefined}
+                    onFocus={showServicesMenu ? openServices : undefined}
+                    onBlur={showServicesMenu ? handleServicesBlur : undefined}
                   >
                     <Link
                       href={link.href}
                       className={`dh-nav-link${isActive(link.href) ? ' is-active' : ''}`}
-                      aria-expanded={servicesOpen}
+                      aria-expanded={showServicesMenu ? servicesOpen : undefined}
                     >
                       {link.label}
-                      <span className={`dh-nav-chevron${servicesOpen ? ' is-open' : ''}`}>
+                      <span
+                        className={`dh-nav-chevron${servicesOpen ? ' is-open' : ''}${
+                          showServicesMenu ? '' : ' is-hidden'
+                        }`}
+                      >
                         <IconChevronDown />
                       </span>
                     </Link>
-                    <ServicesMegaMenu
-                      open={servicesOpen}
-                      onMouseEnter={openServices}
-                      onMouseLeave={() => closeServices()}
-                    />
+                    {showServicesMenu ? (
+                      <ServicesMegaMenu
+                        open={servicesOpen}
+                        onMouseEnter={openServices}
+                        onMouseLeave={() => closeServices()}
+                      />
+                    ) : null}
                   </div>
                 ) : (
                   <Link

@@ -377,6 +377,51 @@ export function IconStoreRelease(props) {
   );
 }
 
+// --- DevOps capabilities -----------------------------------------------------
+
+export function IconCicdPipeline(props) {
+  return (
+    <Svg {...props}>
+      <path d="M4.6 8.4a7.4 7.4 0 0 1 12.6-2.6" />
+      <path d="M17.2 3.2v2.8h-2.8" />
+      <path d="M19.4 15.6a7.4 7.4 0 0 1-12.6 2.6" />
+      <path d="M6.8 20.8V18h2.8" />
+    </Svg>
+  );
+}
+
+export function IconCloudArchitecture(props) {
+  return (
+    <Svg {...props}>
+      <path d="M6.4 17.4a3.8 3.8 0 0 1-.5-7.56A5.2 5.2 0 0 1 16.3 8.9a3.6 3.6 0 0 1 1.3 7.02" />
+      <path d="M8 17.4h9.6" />
+      <path d="M12 13.6v6.4" />
+      <path d="m9.6 18 2.4 2.4L14.4 18" />
+    </Svg>
+  );
+}
+
+export function IconContainers(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.2" y="3.4" width="7" height="7" rx="1.4" />
+      <rect x="13.8" y="3.4" width="7" height="7" rx="1.4" />
+      <rect x="3.2" y="13.6" width="7" height="7" rx="1.4" />
+      <rect x="13.8" y="13.6" width="7" height="7" rx="1.4" />
+      <path d="M10.2 6.9h3.6M6.7 10.4v3.2" />
+    </Svg>
+  );
+}
+
+export function IconMonitoring(props) {
+  return (
+    <Svg {...props}>
+      <path d="M3 13.2h3.6l2-4.4 3 8.8 2.2-6 1.6 3.2H21" />
+      <path d="M4.4 19.6h15.2" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {

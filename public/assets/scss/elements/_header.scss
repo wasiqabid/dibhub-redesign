@@ -133,6 +133,12 @@ $header-over-hero: 'body:has([data-hero-host]) .dh-header:not(.dh-header--solid)
   &.is-open {
     transform: rotate(180deg);
   }
+
+  // Routes without a dropdown hide the chevron rather than dropping it, so the
+  // Services item keeps its width and the nav never shifts between pages.
+  &.is-hidden {
+    visibility: hidden;
+  }
 }
 
 .dh-nav-services {
