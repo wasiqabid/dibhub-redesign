@@ -15,7 +15,7 @@
 .dh-services-head,
 .dh-offerings-head,
 .dh-benefits-head,
-.dh-ai-capabilities-head {
+.dh-svc-capabilities-head {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: clamp(20px, 4vw, 64px);

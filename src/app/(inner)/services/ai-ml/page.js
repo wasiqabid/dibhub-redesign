@@ -1,7 +1,8 @@
-import AiMlBanner from '@/components/banner/AiMlBanner';
+import ServiceDetailBanner from '@/components/banner/ServiceDetailBanner';
 import Cta from '@/components/cta/Cta';
-import AiMlApproach from '@/components/services/AiMlApproach';
-import AiMlCapabilities from '@/components/services/AiMlCapabilities';
+import ServiceApproach from '@/components/services/ServiceApproach';
+import ServiceCapabilities from '@/components/services/ServiceCapabilities';
+import { AI_ML_APPROACH, AI_ML_CAPABILITIES, AI_ML_HERO } from '@/components/services/aiMlContent';
 
 export const metadata = {
   title: 'AI & Machine Learning',
@@ -12,9 +13,9 @@ export const metadata = {
 export default function AiMlPage() {
   return (
     <>
-      <AiMlBanner />
-      <AiMlCapabilities />
-      <AiMlApproach />
+      <ServiceDetailBanner {...AI_ML_HERO} />
+      <ServiceCapabilities {...AI_ML_CAPABILITIES} />
+      <ServiceApproach {...AI_ML_APPROACH} />
       <Cta />
     </>
   );

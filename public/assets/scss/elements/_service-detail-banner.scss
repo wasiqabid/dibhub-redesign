@@ -1,24 +1,24 @@
 // =============================================================================
-// AI & ML hero — reuses the shared inner-page hero shell (.dh-page-hero*) and
+// Service detail hero — reuses the shared inner-page hero shell (.dh-page-hero*) and
 // adds the breadcrumb, tighter padding and tech-stack pills this page needs.
 // =============================================================================
 
 @use 'default' as *;
 
 // Service detail heroes sit slightly higher than the section landing pages.
-.dh-ai-hero-inner {
+.dh-svc-hero-inner {
   padding-top: $hero-pad-top-detail;
 }
 
-.dh-ai-hero-title {
+.dh-svc-hero-title {
   max-width: 22ch;
 }
 
-.dh-ai-hero-lead {
+.dh-svc-hero-lead {
   max-width: 58ch;
 }
 
-.dh-page-hero .dh-ai-hero-eyebrow {
+.dh-page-hero .dh-svc-hero-eyebrow {
   margin-bottom: clamp(20px, 3vw, 28px);
 }
 

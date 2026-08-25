@@ -302,6 +302,48 @@ export function IconRecommendationEngines(props) {
   );
 }
 
+// --- Web development capabilities --------------------------------------------
+
+export function IconMarketingSite(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3" y="4.4" width="18" height="15.2" rx="2.2" />
+      <path d="M3 9h18" />
+      <path d="M6.4 6.7h.9M9.1 6.7h.9" />
+    </Svg>
+  );
+}
+
+export function IconSaasPlatform(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.2" y="3.2" width="7.4" height="7.4" rx="1.6" />
+      <rect x="13.4" y="3.2" width="7.4" height="7.4" rx="1.6" />
+      <rect x="3.2" y="13.4" width="7.4" height="7.4" rx="1.6" />
+      <rect x="13.4" y="13.4" width="7.4" height="7.4" rx="1.6" />
+    </Svg>
+  );
+}
+
+export function IconApiBackend(props) {
+  return (
+    <Svg {...props}>
+      <ellipse cx="12" cy="6.4" rx="7.4" ry="2.8" />
+      <path d="M4.6 6.4v11.2c0 1.55 3.3 2.8 7.4 2.8s7.4-1.25 7.4-2.8V6.4" />
+      <path d="M4.6 12c0 1.55 3.3 2.8 7.4 2.8s7.4-1.25 7.4-2.8" />
+    </Svg>
+  );
+}
+
+export function IconInternalDashboard(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3" y="4.4" width="18" height="15.2" rx="2.2" />
+      <path d="M7.4 15.6V11M12 15.6V8.4M16.6 15.6v-3" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
