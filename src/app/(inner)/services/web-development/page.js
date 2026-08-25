@@ -12,6 +12,12 @@ export const metadata = {
   title: 'Web Development',
   description:
     'Modern, scalable websites and applications built with React, TypeScript, MongoDB and other cutting-edge technologies, from landing pages to full SaaS platforms.',
+  openGraph: {
+    title: 'Web Development',
+    description:
+      'Modern, scalable websites and applications built with React, TypeScript, MongoDB and other cutting-edge technologies, from landing pages to full SaaS platforms.',
+    images: ['/assets/images/dibhub-logo.png'],
+  },
 };
 
 export default function WebDevelopmentPage() {

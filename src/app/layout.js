@@ -16,9 +16,15 @@ const cabin = Cabin({
 
 // Inline styles from Framer only lose to !important.
 const NOSCRIPT_REVEAL_CSS =
-  '[data-reveal],[data-rise]{opacity:1!important;transform:none!important;filter:none!important}';
+  '[data-reveal],[data-rise]{opacity:1!important;transform:none!important;filter:none!important}' +
+  '[data-type-pending]{visibility:visible!important}';
+
+// Relative openGraph images and canonical URLs resolve against this one origin.
+// Set NEXT_PUBLIC_SITE_URL for deployed builds; localhost is the dev fallback.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'DibHub — Dedicated Innovative Brains Hub',
     template: '%s | DibHub',

@@ -8,7 +8,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 const STAGGER_MS = 130;
 const STAGGER_MAX_MS = 520;
 
-const variants = {
+const VARIANTS = {
   hidden: {
     opacity: 0,
     y: 56,
@@ -40,7 +40,7 @@ export default function Reveal({ as = 'div', index = 0, className, children, ...
     <Tag
       className={className}
       data-reveal=""
-      variants={variants}
+      variants={VARIANTS}
       custom={Math.min(index * STAGGER_MS, STAGGER_MAX_MS) / 1000}
       initial="hidden"
       whileInView="visible"

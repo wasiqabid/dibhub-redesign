@@ -33,6 +33,22 @@
   animation: dh-caret 1s step-end infinite both;
 }
 
+// A typed headline is server-rendered complete so it is readable without
+// JavaScript, but it must not be painted during the hydration gap — otherwise
+// it shows finished and then restarts as the animation. `visibility` rather
+// than `opacity`/`display` so the hero reserves its final height and nothing
+// shifts when the animation takes over.
+[data-type-pending] {
+  visibility: hidden;
+}
+
+// Nothing types under reduced motion, so the static headline stays visible.
+@media (prefers-reduced-motion: reduce) {
+  [data-type-pending] {
+    visibility: visible;
+  }
+}
+
 // The source collapses every duration rather than removing motion outright.
 @media (prefers-reduced-motion: reduce) {
   *,

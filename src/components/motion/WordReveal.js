@@ -91,8 +91,13 @@ export default function WordReveal({ segments, caret = false, className }) {
   ) : null;
 
   if (reduced || !mounted) {
+    // The server sends the finished headline so crawlers and no-JS readers get
+    // it, but the browser would otherwise paint it during the hydration gap and
+    // then restart it as the typed animation. `data-type-pending` holds it
+    // visually hidden until mount; CSS keeps it visible under reduced motion,
+    // and the root layout's <noscript> rule restores it without JavaScript.
     return (
-      <span className={className}>
+      <span className={className} data-type-pending="">
         {segments.map((segment, i) => (
           <span key={i} className={segment.accent ? 'dh-word--accent' : undefined}>
             {i > 0 ? ' ' : ''}

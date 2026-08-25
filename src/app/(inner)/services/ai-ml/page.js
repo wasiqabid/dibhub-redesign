@@ -8,6 +8,12 @@ export const metadata = {
   title: 'AI & Machine Learning',
   description:
     'Natural language processing, computer vision, predictive analytics and recommendation systems, trained, evaluated, deployed and monitored — not handed over as a notebook.',
+  openGraph: {
+    title: 'AI & Machine Learning',
+    description:
+      'Natural language processing, computer vision, predictive analytics and recommendation systems, trained, evaluated, deployed and monitored — not handed over as a notebook.',
+    images: ['/assets/images/dibhub-logo.png'],
+  },
 };
 
 export default function AiMlPage() {
