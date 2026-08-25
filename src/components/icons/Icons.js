@@ -422,6 +422,48 @@ export function IconMonitoring(props) {
   );
 }
 
+// --- QA automation capabilities ----------------------------------------------
+// IconApiTesting is close to IconApiIntegration but not identical — the QA
+// reference draws the inner slash differently, so it gets its own glyph.
+
+export function IconUnitTesting(props) {
+  return (
+    <Svg {...props}>
+      <path d="M5.2 4.6h13.6v14.8H5.2z" />
+      <path d="m8.2 11.4 2.2 2.2 4.8-4.8" />
+    </Svg>
+  );
+}
+
+export function IconIntegrationTesting(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="7.6" cy="7.6" r="3.4" />
+      <circle cx="16.4" cy="16.4" r="3.4" />
+      <path d="M10.4 8.6a5.8 5.8 0 0 1 5 5" />
+    </Svg>
+  );
+}
+
+export function IconApiTesting(props) {
+  return (
+    <Svg {...props}>
+      <path d="M9.6 4.6 5 12l4.6 7.4M14.4 4.6 19 12l-4.6 7.4" />
+      <path d="m13.2 8.6-2.4 6.8" />
+    </Svg>
+  );
+}
+
+export function IconEndToEndTesting(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="10.6" cy="10.6" r="6" />
+      <path d="m15.2 15.2 5 5" />
+      <path d="m8.2 10.6 1.8 1.8 3.2-3.4" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
