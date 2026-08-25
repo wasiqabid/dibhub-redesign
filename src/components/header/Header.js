@@ -87,6 +87,10 @@ export default function Header() {
 
   const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
+  // The services overview already lists every service on the page itself, so the
+  // nav drops its dropdown there. Detail pages under /services keep it.
+  const showServicesMenu = pathname !== '/services';
+
   return (
     <header
       className={headerClass}
@@ -109,7 +113,7 @@ export default function Header() {
           <>
             <nav className="dh-nav" aria-label="Primary">
               {PRIMARY_LINKS.map((link) =>
-                link.hasMegaMenu ? (
+                link.hasMegaMenu && showServicesMenu ? (
                   <div
                     key={link.href}
                     className="dh-nav-services"

@@ -259,6 +259,49 @@ export function IconInHouseTechs(props) {
   );
 }
 
+// --- AI & ML capabilities ----------------------------------------------------
+
+export function IconNlp(props) {
+  return (
+    <Svg {...props}>
+      <path d="M20.4 12.6c0 4-3.8 7.2-8.4 7.2-1 0-2-.15-2.9-.42L4.2 21l1.5-3.9C4.3 15.9 3.6 14.3 3.6 12.6c0-4 3.8-7.2 8.4-7.2s8.4 3.2 8.4 7.2Z" />
+      <path d="M8.6 11.4h6.8M8.6 14.4h4.4" />
+    </Svg>
+  );
+}
+
+export function IconComputerVision(props) {
+  return (
+    <Svg {...props}>
+      <path d="M2.6 12S6 5.8 12 5.8 21.4 12 21.4 12 18 18.2 12 18.2 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="3.2" />
+    </Svg>
+  );
+}
+
+export function IconPredictiveAnalytics(props) {
+  return (
+    <Svg {...props}>
+      <path d="M3.6 19.4h16.8" />
+      <path d="m4.8 15.4 4.4-4.8 3.4 2.8 6.6-7" />
+      <path d="M15.6 6.4h4v4" />
+    </Svg>
+  );
+}
+
+export function IconRecommendationEngines(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="2.6" />
+      <circle cx="5" cy="6.4" r="2.2" />
+      <circle cx="19" cy="6.4" r="2.2" />
+      <circle cx="5" cy="17.6" r="2.2" />
+      <circle cx="19" cy="17.6" r="2.2" />
+      <path d="m6.9 7.6 3.2 2.8M17.1 7.6l-3.2 2.8M6.9 16.4l3.2-2.8M17.1 16.4l-3.2-2.8" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {

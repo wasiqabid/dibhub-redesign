@@ -1,0 +1,79 @@
+// =============================================================================
+// AI & ML hero — reuses the shared inner-page hero shell (.dh-page-hero*) and
+// adds the breadcrumb, tighter padding and tech-stack pills this page needs.
+// =============================================================================
+
+@use 'default' as *;
+
+// Service detail heroes sit slightly higher than the section landing pages.
+.dh-ai-hero-inner {
+  padding-top: $hero-pad-top-detail;
+}
+
+.dh-ai-hero-title {
+  max-width: 22ch;
+}
+
+.dh-ai-hero-lead {
+  max-width: 58ch;
+}
+
+.dh-page-hero .dh-ai-hero-eyebrow {
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+// --- Breadcrumb --------------------------------------------------------------
+
+.dh-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(22px, 3vw, 30px);
+  font-size: $fs-meta;
+  color: $color-on-dark-fainter;
+
+  a {
+    color: $color-on-dark-fainter;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.dh-breadcrumb-current {
+  color: $color-on-dark-strong;
+}
+
+// --- Tech stack pills --------------------------------------------------------
+
+.dh-stack-row {
+  margin-top: clamp(30px, 3.6vw, 42px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dh-stack-pill {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: $color-on-dark-pill;
+  border: 1px solid $color-on-dark-pill-border;
+  border-radius: $radius-pill;
+  padding: 8px 16px;
+  cursor: default;
+  transition:
+    background 0.24s ease,
+    color 0.24s ease,
+    border-color 0.24s ease,
+    transform 0.24s ease;
+
+  &:hover {
+    background: $color-accent;
+    color: $color-on-accent;
+    border-color: $color-accent;
+    transform: translateY(-2px);
+  }
+}

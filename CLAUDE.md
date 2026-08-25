@@ -232,7 +232,10 @@ same regardless of folder depth:
 - Images: `next/image` with sources under `/assets/images/...`. Links: `next/link`.
 - Content that is pure data (card copy, tags, step text) lives in a lowercase file beside
   the component it feeds — `portfolio/projects.js`, `services/serviceItems.js`,
-  `process/processSteps.js`. Data shared across features goes to `utils/` instead, which is
+  `process/processSteps.js`. **A data file must not match its component's name in any
+  casing** — Windows is case-insensitive, so `aiMlCapabilities.js` and
+  `AiMlCapabilities.js` are the same file and one silently overwrites the other. Suffix the
+  data file instead: `aiMlCapabilityItems.js`. Data shared across features goes to `utils/` instead, which is
   why nav/footer links live in `utils/navigation.js`.
 
 ### `components/motion` — animation primitives
