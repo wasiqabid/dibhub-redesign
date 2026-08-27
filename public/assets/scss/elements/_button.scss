@@ -1,5 +1,9 @@
 // =============================================================================
-// Gradient pill button + the rule-and-corner arrow glyph
+// Gradient pill button + badge, and the rule-and-corner arrow glyph
+//
+// One button treatment site-wide: the gradient pill carries a square badge on
+// its right holding the arrow. The bare arrow rule below is still used by the
+// inline text links ("View project", "Service Details"), not by buttons.
 // =============================================================================
 
 @use 'default' as *;
@@ -7,7 +11,7 @@
 .dh-button {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
+  gap: 14px;
   background: linear-gradient(
     100deg,
     $color-ink 0%,
@@ -19,7 +23,7 @@
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.01em;
-  padding: 15px 31px;
+  padding: 11px 13px 11px 26px;
   border: 1.5px solid transparent;
   border-radius: $radius-pill;
   transition:
@@ -35,6 +39,20 @@
   &:active {
     transform: translateY(0) scale(0.99);
   }
+}
+
+.dh-button-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.18);
+  color: $color-on-dark;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 // The arrow is a horizontal rule with a rotated corner on its end, so it

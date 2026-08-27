@@ -5,8 +5,11 @@ import Link from 'next/link';
 import { usePointerSpotlight } from '@/hooks/usePointerSpotlight';
 import { ButtonBadge } from '@/components/icons/Icons';
 import Reveal from '@/components/motion/Reveal';
+import { ABOUT_CTA } from '@/components/about/aboutContent';
 
-export default function Cta() {
+// The section shell matches the shared CTA exactly; only the button differs —
+// this page uses the badge variant rather than the arrow rule.
+export default function AboutCta() {
   const { hostRef, spotRef, spotlightProps } = usePointerSpotlight();
 
   return (
@@ -14,7 +17,7 @@ export default function Cta() {
       id="contact"
       ref={hostRef}
       className="dh-cta"
-      aria-labelledby="cta-title"
+      aria-labelledby="about-cta-title"
       {...spotlightProps}
     >
       <div className="dh-cta-dots" />
@@ -23,20 +26,17 @@ export default function Cta() {
       <div className="dh-cta-inner">
         <Reveal index={0}>
           <div className="dh-eyebrow-row">
-            <span className="dh-eyebrow">Get started</span>
+            <span className="dh-eyebrow">{ABOUT_CTA.eyebrow}</span>
           </div>
-          <h2 id="cta-title" className="dh-section-title">
-            Book a free consultation.
+          <h2 id="about-cta-title" className="dh-section-title">
+            {ABOUT_CTA.title}
           </h2>
-          <p className="dh-cta-lead">
-            Thirty minutes with an engineer, not a salesperson. Bring the problem — you&#39;ll leave
-            with an honest read on scope, approach and cost.
-          </p>
+          <p className="dh-cta-lead">{ABOUT_CTA.lead}</p>
         </Reveal>
 
         <Reveal className="dh-cta-actions" index={1}>
-          <Link href="/contact" className="dh-button">
-            Schedule now
+          <Link href={ABOUT_CTA.cta.href} className="dh-button">
+            {ABOUT_CTA.cta.label}
             <ButtonBadge />
           </Link>
         </Reveal>

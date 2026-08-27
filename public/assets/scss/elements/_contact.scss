@@ -1,4 +1,352 @@
 // =============================================================================
-// contact
-// Placeholder — fill in when the approved design for this section is provided.
+// Contact — hero overrides, the form panel and the details panel
+//
+// The hero reuses the shared inner-page shell (.dh-page-hero*) and the submit
+// button reuses the shared .dh-button; everything else is defined here.
 // =============================================================================
+
+@use 'default' as *;
+
+// This hero sits a little shallower than the other inner pages, and its
+// headline runs narrower.
+.dh-contact-hero-inner {
+  padding-bottom: clamp(64px, 8vw, 104px);
+}
+
+.dh-contact-hero-title {
+  max-width: 16ch;
+}
+
+// --- Section shell -----------------------------------------------------------
+
+.dh-contact {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+// Form left, details panel right; single column below 1040px.
+.dh-contact-shell {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: clamp(56px, 7vw, 104px) $container-pad;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 44px);
+  align-items: start;
+
+  @include media-up($bp-contact-form) {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  }
+}
+
+// Both cards share the same surface.
+.dh-contact-panel {
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-card;
+  box-shadow: $shadow-card-soft;
+  transition:
+    filter 0.32s ease,
+    opacity 0.32s ease,
+    transform 0.32s $ease-out-soft;
+
+  // The two cards read as one hover group. The card under the cursor is left
+  // at rest — the reference gives it no lift of its own, and it is the
+  // sibling's retreat that reads as the pop.
+  &.is-dimmed {
+    filter: blur(2px);
+    opacity: 0.45;
+    transform: scale(0.985);
+  }
+}
+
+.dh-contact-form-panel {
+  padding: clamp(24px, 3vw, 48px);
+}
+
+// --- Form --------------------------------------------------------------------
+
+.dh-contact-form-title {
+  margin: 0 0 10px;
+  font-size: $fs-panel-title;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: $color-ink;
+}
+
+.dh-contact-form-lead {
+  margin: 0 0 clamp(24px, 3vw, 34px);
+  font-size: 16px;
+  line-height: 1.65;
+  color: $color-muted;
+  max-width: 48ch;
+  text-wrap: pretty;
+}
+
+// Two fields per row from 620px, one below.
+.dh-contact-field-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 1.8vw, 22px);
+
+  @include media-up($bp-contact-fields) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.dh-contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dh-contact-field--message {
+  margin-top: clamp(16px, 1.8vw, 22px);
+}
+
+.dh-contact-field-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-ink;
+}
+
+.dh-contact-field-optional {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: $color-muted-light;
+}
+
+.dh-contact-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 16px;
+  color: $color-ink;
+  background: $color-field-bg;
+  border: 1.5px solid $color-field-border;
+  border-radius: $radius-xl;
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+    background: $color-bg;
+    box-shadow: 0 0 0 4px $color-field-focus-ring;
+  }
+
+  // The focus ring above is the visible state; keep the global outline for
+  // keyboard users on top of it rather than removing it outright.
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+  }
+}
+
+.dh-contact-textarea {
+  height: auto;
+  min-height: 150px;
+  padding: 15px 16px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+// --- Consent checkbox --------------------------------------------------------
+// The real input is visually hidden and drives the styled box through CSS, so
+// no JavaScript state is involved.
+
+.dh-contact-consent {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: clamp(20px, 2.2vw, 28px);
+  cursor: pointer;
+}
+
+.dh-contact-consent-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.dh-contact-checkbox {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-checkbox-border;
+  background: $color-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dh-contact-consent-input:checked + .dh-contact-checkbox {
+  background: $color-accent;
+  border-color: $color-accent;
+  color: $color-on-dark;
+}
+
+// The input itself is invisible, so the box has to show the focus ring.
+.dh-contact-consent-input:focus-visible + .dh-contact-checkbox {
+  outline: 2px solid $color-accent;
+  outline-offset: 3px;
+}
+
+.dh-contact-consent-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: $color-muted;
+  text-wrap: pretty;
+}
+
+// --- Submit row --------------------------------------------------------------
+
+.dh-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: clamp(24px, 2.8vw, 34px);
+}
+
+.dh-contact-reassurance {
+  font-size: 14.5px;
+  color: $color-muted-light;
+}
+
+// --- Details panel -----------------------------------------------------------
+
+.dh-contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.8vw, 20px);
+
+  @include media-up($bp-contact-form) {
+    position: sticky;
+    top: 96px;
+  }
+
+  .dh-contact-panel {
+    padding: clamp(24px, 2.6vw, 34px);
+  }
+}
+
+.dh-contact-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dh-contact-panel-eyebrow {
+  margin: 0;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-ink;
+  padding-bottom: 6px;
+  border-bottom: 2px solid $color-accent;
+}
+
+.dh-contact-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dh-contact-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid $color-border;
+  border-radius: $radius-panel;
+  padding: 16px;
+  background: $color-bg;
+  color: $color-ink;
+}
+
+.dh-contact-row-icon {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-xl;
+  background: $color-accent-tint;
+  border: 1px solid rgba(67, 179, 174, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-accent-deep;
+}
+
+.dh-contact-row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.dh-contact-row-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.55;
+}
+
+.dh-contact-row-value {
+  font-size: 17px;
+  font-weight: 600;
+  color: inherit;
+  word-break: break-word;
+  transition: color 0.2s ease;
+}
+
+a.dh-contact-row-value:hover {
+  color: $color-accent-deep;
+}
+
+.dh-contact-notice {
+  margin: 22px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid $color-border-section;
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: $color-muted-light;
+  text-wrap: pretty;
+}
+
+.dh-contact-notice-mark {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid $color-checkbox-border;
+  font-size: 11px;
+  font-weight: 700;
+}

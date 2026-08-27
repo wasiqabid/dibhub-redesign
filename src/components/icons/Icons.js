@@ -498,6 +498,64 @@ export function IconPortalsPayments(props) {
   );
 }
 
+// --- About ------------------------------------------------------------------
+
+export function IconCuriosity(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M15.4 15.4 21 21" />
+    </Svg>
+  );
+}
+
+// Sits inside the badge on the About buttons, so it is smaller and heavier.
+export function IconArrowUpRight(props) {
+  return (
+    <Svg size={15} strokeWidth={2.2} {...props}>
+      <path d="M7 17 17 7" />
+      <path d="M8.6 7H17v8.4" />
+    </Svg>
+  );
+}
+
+// --- Contact ------------------------------------------------------------------
+
+export function IconEnvelope(props) {
+  return (
+    <Svg size={19} {...props}>
+      <rect x="3" y="5.2" width="18" height="13.6" rx="2.2" />
+      <path d="m3.8 6.4 8.2 6 8.2-6" />
+    </Svg>
+  );
+}
+
+export function IconPhone(props) {
+  return (
+    <Svg size={19} {...props}>
+      <path d="M6.2 3.6h3.1l1.5 3.9-2 1.4a12.4 12.4 0 0 0 5.3 5.3l1.4-2 3.9 1.5v3.1a1.8 1.8 0 0 1-2 1.8C10.8 18.1 5.9 13.2 4.4 5.6a1.8 1.8 0 0 1 1.8-2Z" />
+    </Svg>
+  );
+}
+
+export function IconClock(props) {
+  return (
+    <Svg size={19} {...props}>
+      <circle cx="12" cy="12" r="8.6" />
+      <path d="M12 7.2V12l3.2 2" />
+    </Svg>
+  );
+}
+
+// Drawn inside the consent checkbox, so it is small and heavy.
+export function IconCheck(props) {
+  return (
+    <Svg size={13} strokeWidth={3} {...props}>
+      <path d="M4 12.5 9.5 18 20 6.5" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
@@ -543,7 +601,16 @@ export function IconInstagram() {
   );
 }
 
-// The "→" used on links and buttons is a rule plus a rotated corner, not a glyph.
+// The badge on the right of every gradient pill button.
+export function ButtonBadge() {
+  return (
+    <span className="dh-button-badge">
+      <IconArrowUpRight />
+    </span>
+  );
+}
+
+// The "→" used on inline text links is a rule plus a rotated corner, not a glyph.
 export function ArrowGlyph({ size = 'sm' }) {
   return (
     <span className={`dh-arrow dh-arrow--${size}`} aria-hidden="true">

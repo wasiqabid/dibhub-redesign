@@ -7,9 +7,21 @@ import { motion, useReducedMotion } from 'framer-motion';
 //
 //   * each word is its own inline-block that rises 0.16em and sharpens from a
 //     6px blur, so words never break mid-word across lines;
-//   * within them characters fade in one at a time on an 85ms cadence, with the
+//   * within them characters appear one at a time on an 85ms cadence, with the
 //     caret sitting after the most recently revealed character until the line
 //     finishes, at which point it parks at the end and blinks.
+//
+// `revealed` is the single clock for the text layer: the caret position and
+// which characters are visible both derive from it in the same render, so a
+// character can never appear before the caret reaches it. It is computed from
+// elapsed time rather than counted up by an interval, because an interval
+// accumulates drift and would slide the caret out of step with the text.
+// Characters switch on outright — the design source assigns opacity with no
+// transition, and a fade longer than the 85ms cadence leaves the next character
+// visibly bleeding through ahead of the caret.
+//
+// The per-word blur/lift stays on its own Framer delay: it moves the word
+// container, never a character's visibility, so it cannot leak text early.
 //
 // Under prefers-reduced-motion the text renders complete and the caret stops.
 //
@@ -20,7 +32,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 const START_DELAY = 0.1;
 const PER_CHAR = 0.085;
 const WORD_DURATION = 0.5;
-const CHAR_DURATION = 0.18;
 
 // Swapping in the split before paint avoids a flash of the finished headline.
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
@@ -56,35 +67,33 @@ export default function WordReveal({ segments, caret = false, className }) {
     };
   }, [segments]);
 
-  // Only the caret's position needs a timer; the glyphs themselves run on
-  // declarative Framer delays.
-  const [caretAt, setCaretAt] = useState(reduced ? totalChars : 0);
+  const [revealed, setRevealed] = useState(reduced ? totalChars : 0);
 
   useEffect(() => {
-    if (!caret || reduced) {
-      setCaretAt(totalChars);
+    if (reduced) {
+      setRevealed(totalChars);
       return undefined;
     }
 
-    let step = 0;
-    let timer = null;
+    let frame = null;
+    const start = performance.now();
 
-    setCaretAt(0);
-    const start = window.setTimeout(() => {
-      timer = window.setInterval(() => {
-        step += 1;
-        setCaretAt(step);
-        if (step >= totalChars) window.clearInterval(timer);
-      }, PER_CHAR * 1000);
-    }, START_DELAY * 1000);
+    const tick = (now) => {
+      const elapsed = (now - start) / 1000 - START_DELAY;
+      const next = Math.min(totalChars, Math.max(0, Math.floor(elapsed / PER_CHAR) + 1));
+      setRevealed(next);
+      if (next < totalChars) frame = requestAnimationFrame(tick);
+    };
+
+    setRevealed(0);
+    frame = requestAnimationFrame(tick);
 
     return () => {
-      window.clearTimeout(start);
-      if (timer) window.clearInterval(timer);
+      if (frame) cancelAnimationFrame(frame);
     };
-  }, [caret, reduced, totalChars]);
+  }, [reduced, totalChars]);
 
-  const finished = caretAt >= totalChars;
+  const finished = revealed >= totalChars;
 
   const caretNode = caret ? (
     <span className={`dh-caret${finished && !reduced ? ' dh-caret--blinking' : ''}`} />
@@ -128,19 +137,10 @@ export default function WordReveal({ segments, caret = false, className }) {
             {word.text.split('').map((char, i) => {
               const absolute = word.firstChar + i;
               return (
-                <motion.span
-                  key={i}
-                  className="dh-char"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{
-                    duration: CHAR_DURATION,
-                    delay: START_DELAY + absolute * PER_CHAR,
-                  }}
-                >
+                <span key={i} className="dh-char" style={{ opacity: absolute < revealed ? 1 : 0 }}>
                   {char}
-                  {caret && !finished && absolute === caretAt - 1 ? caretNode : null}
-                </motion.span>
+                  {caret && !finished && absolute === revealed - 1 ? caretNode : null}
+                </span>
               );
             })}
           </motion.span>
