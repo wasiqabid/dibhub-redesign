@@ -70,6 +70,10 @@ $shadow-card-hover: 0 20px 44px rgba(31, 31, 37, 0.1);
 $shadow-card-soft: 0 20px 44px rgba(31, 31, 37, 0.06); // About team card
 $shadow-card-pop: 0 24px 54px rgba(31, 31, 37, 0.18);
 $shadow-panel: 0 28px 64px rgba(16, 18, 20, 0.16);
+// Case-study product shot, and the dark row that lifts inside a story column.
+$shadow-shot: 0 26px 60px rgba(31, 31, 37, 0.08);
+$shadow-shot-hover: 0 30px 68px rgba(31, 31, 37, 0.14);
+$shadow-row-pop: 0 16px 34px rgba(31, 31, 37, 0.18);
 $shadow-float: 0 12px 30px rgba(31, 31, 37, 0.26);
 
 $radius-sm: 3px;
@@ -129,6 +133,11 @@ $bp-steps-2: 560px;
 $bp-about-stat-2: 620px;
 $bp-contact-fields: 620px; // same step as $bp-about-stat-2, kept page-scoped
 $bp-benefits-2: 640px;
+// Case-study steps. Same values as $bp-benefits-2 / $bp-about-mission /
+// $bp-steps-4, kept page-scoped the way $bp-contact-fields already is.
+$bp-project-outcomes-2: 640px;
+$bp-project-story: 980px;
+$bp-project-outcomes-3: 1120px;
 $bp-about-tri-2: 660px;
 $bp-work-listing-2: 760px;
 $bp-about-team: 860px;

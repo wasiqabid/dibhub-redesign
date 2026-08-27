@@ -556,6 +556,29 @@ export function IconCheck(props) {
   );
 }
 
+// --- Barbr case study --------------------------------------------------------
+// The other outcome glyphs on that page already exist above (growth, efficiency,
+// dashboard, mobile); only these two are new.
+
+export function IconClientEngagement(props) {
+  return (
+    <Svg {...props}>
+      <path d="M20.4 14.2c0 1.1-.9 2-2 2H7.8L4 19.6V6.2c0-1.1.9-2 2-2h12.4c1.1 0 2 .9 2 2v8Z" />
+      <path d="M8.4 10.4h7.2" />
+    </Svg>
+  );
+}
+
+export function IconSmartPricing(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M14.6 9.4a2.8 2.8 0 0 0-2.6-1.4c-1.6 0-2.6.9-2.6 2.1 0 2.9 5.4 1.5 5.4 4.3 0 1.3-1.1 2.2-2.8 2.2a3 3 0 0 1-2.8-1.6" />
+      <path d="M12 6v12" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
