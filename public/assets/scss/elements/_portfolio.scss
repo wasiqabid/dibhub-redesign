@@ -666,15 +666,20 @@
   }
 }
 
-// --- Per-project measures ----------------------------------------------------
-// The case studies share every rule above; only these text measures are set
-// differently per project, so each one is a modifier on the section root.
+// --- Per-project overrides ---------------------------------------------------
+// The case studies share every rule above. What differs per project is a
+// handful of text measures, plus the shape of Merge's product shot, so each is
+// a modifier on the relevant section root. Barbr sets no modifier and takes the
+// base values throughout.
 
 .dh-project--all-treat {
   .dh-project-lead {
     max-width: 38ch;
   }
+}
 
+.dh-project--all-treat,
+.dh-project--merge {
   .dh-project-story-lead {
     max-width: 46ch;
   }
@@ -682,5 +687,22 @@
   .dh-project-outcomes-title,
   .dh-project-more-title {
     max-width: 18ch;
+  }
+}
+
+// Merge's shot is a tall portrait screenshot, so the design narrows the card,
+// centres it and lets the image sit inside the frame rather than filling it.
+.dh-project--merge {
+  .dh-project-shot {
+    width: min(100%, 660px);
+    margin-inline: auto;
+  }
+
+  .dh-project-shot-frame {
+    aspect-ratio: 1069 / 1200;
+  }
+
+  .dh-project-shot-image {
+    object-fit: contain;
   }
 }

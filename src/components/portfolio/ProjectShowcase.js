@@ -6,9 +6,19 @@ import Reveal from '@/components/motion/Reveal';
 // Server Component shared by every case study: the product shot and the
 // outbound link. The card's hover treatment is pure CSS, so nothing here needs
 // to run on the client.
-export default function ProjectShowcase({ content }) {
+//
+// `variant` adds a per-project modifier — Merge's shot is a narrow portrait
+// card rather than a full-width 16:9 one — and `content.sizes` goes with it,
+// since a narrower card should not ask for a full-width image.
+const DEFAULT_SIZES = '(min-width: 1280px) 1168px, 100vw';
+
+export default function ProjectShowcase({ content, variant }) {
   return (
-    <section id="showcase" className="dh-project-showcase" aria-label="Product showcase">
+    <section
+      id="showcase"
+      className={variant ? `dh-project-showcase dh-project--${variant}` : 'dh-project-showcase'}
+      aria-label="Product showcase"
+    >
       <div className="dh-project-showcase-inner">
         <Reveal className="dh-project-shot" index={0}>
           <a
@@ -25,7 +35,7 @@ export default function ProjectShowcase({ content }) {
                 alt={content.alt}
                 width={content.width}
                 height={content.height}
-                sizes="(min-width: 1280px) 1168px, 100vw"
+                sizes={content.sizes ?? DEFAULT_SIZES}
               />
             </span>
           </a>

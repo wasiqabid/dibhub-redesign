@@ -614,6 +614,51 @@ export function IconAutomatedWorkflows(props) {
   );
 }
 
+// --- Merge case study --------------------------------------------------------
+// Its dashboard glyph is IconInternalDashboard and its cookie-free-analytics
+// shield is IconEnhanceSecurity; these four have no existing equivalent.
+
+export function IconSmartLink(props) {
+  return (
+    <Svg {...props}>
+      <path d="M9.6 14.4 14.4 9.6" />
+      <path d="M11.4 6.6l1.8-1.8a3.7 3.7 0 0 1 5.2 5.2l-1.8 1.8" />
+      <path d="M12.6 17.4l-1.8 1.8a3.7 3.7 0 0 1-5.2-5.2l1.8-1.8" />
+    </Svg>
+  );
+}
+
+export function IconDeepLink(props) {
+  return (
+    <Svg {...props}>
+      <rect x="7" y="2.8" width="10" height="18.4" rx="2.2" />
+      <path d="M11 18.4h2" />
+      <path d="m10 9.6 3.4 2.4-3.4 2.4" />
+    </Svg>
+  );
+}
+
+export function IconGlobe(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M12 3.6v16.8M3.6 12h16.8" />
+      <path d="M12 3.6c2.6 2.4 2.6 14.4 0 16.8M12 3.6c-2.6 2.4-2.6 14.4 0 16.8" />
+    </Svg>
+  );
+}
+
+export function IconMultilingual(props) {
+  return (
+    <Svg {...props}>
+      <path d="M4 6.4h8.4M8.2 4.4v2M10.6 6.4c-.6 4.2-3 6.6-6.6 8" />
+      <path d="M6.4 11.4c1.6 2.4 3.6 3.8 6 4.6" />
+      <path d="m13.6 19.6 3.4-8.4 3.4 8.4" />
+      <path d="M14.9 16.6h4.2" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
