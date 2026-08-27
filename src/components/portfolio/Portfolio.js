@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { useHoverGroup } from '@/hooks/useHoverGroup';
-import { ArrowGlyph } from '@/components/icons/Icons';
+import { ButtonBadge } from '@/components/icons/Icons';
 import Reveal from '@/components/motion/Reveal';
 import WorkCard from '@/components/portfolio/WorkCard';
 import { FEATURED_PROJECTS } from '@/components/portfolio/projects';
@@ -40,7 +40,7 @@ export default function Portfolio() {
         <Reveal className="dh-work-footer">
           <Link href="/portfolio" className="dh-button">
             All projects
-            <ArrowGlyph size="md" />
+            <ButtonBadge />
           </Link>
         </Reveal>
       </div>

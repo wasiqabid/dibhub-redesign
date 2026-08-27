@@ -498,6 +498,27 @@ export function IconPortalsPayments(props) {
   );
 }
 
+// --- About ------------------------------------------------------------------
+
+export function IconCuriosity(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M15.4 15.4 21 21" />
+    </Svg>
+  );
+}
+
+// Sits inside the badge on the About buttons, so it is smaller and heavier.
+export function IconArrowUpRight(props) {
+  return (
+    <Svg size={15} strokeWidth={2.2} {...props}>
+      <path d="M7 17 17 7" />
+      <path d="M8.6 7H17v8.4" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
@@ -543,7 +564,16 @@ export function IconInstagram() {
   );
 }
 
-// The "→" used on links and buttons is a rule plus a rotated corner, not a glyph.
+// The badge on the right of every gradient pill button.
+export function ButtonBadge() {
+  return (
+    <span className="dh-button-badge">
+      <IconArrowUpRight />
+    </span>
+  );
+}
+
+// The "→" used on inline text links is a rule plus a rotated corner, not a glyph.
 export function ArrowGlyph({ size = 'sm' }) {
   return (
     <span className={`dh-arrow dh-arrow--${size}`} aria-hidden="true">

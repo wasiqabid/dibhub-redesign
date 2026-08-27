@@ -1,4 +1,340 @@
 // =============================================================================
-// about
-// Placeholder — fill in when the approved design for this section is provided.
+// About — mission, by the numbers, culture, team teaser
+//
+// The hero reuses the shared inner-page shell (.dh-page-hero*) and the closing
+// CTA reuses the shared .dh-cta* shell; only the pieces this page introduces
+// live here.
 // =============================================================================
+
+@use 'default' as *;
+
+// The About lead runs slightly wider than the section landing pages.
+.dh-about-hero-lead {
+  max-width: 58ch;
+}
+
+// Mission and culture put a little more air under their eyebrow than the
+// shared 20px.
+.dh-about-eyebrow-row {
+  margin-bottom: 22px;
+}
+
+// The mission eyebrow is a real h2 (see AboutMission), so drop the heading
+// margin the browser would otherwise add. Everything else comes from .dh-eyebrow.
+.dh-about-mission-heading {
+  margin: 0;
+}
+
+// --- Shared card, used by both the mission and culture triptychs -------------
+
+// 1 column, 2 from 660px, 3 from 1000px — the reference's triCols steps.
+.dh-about-card-grid {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+  grid-template-columns: minmax(0, 1fr);
+
+  @include media-up($bp-about-tri-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-about-wide) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.dh-about-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(24px, 2.6vw, 32px);
+  @include pop-card;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-about-card-icon {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-about-card-icon {
+  @include icon-tile(46px);
+}
+
+.dh-about-card-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: inherit;
+}
+
+.dh-about-card-blurb {
+  margin: 0;
+  font-size: $fs-body-sm;
+  line-height: 1.65;
+  color: inherit;
+  opacity: 0.62;
+  text-wrap: pretty;
+}
+
+// --- Mission -----------------------------------------------------------------
+
+.dh-about-mission {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+// Quote left, supporting copy right; single column below 980px.
+.dh-about-mission-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+  margin-bottom: clamp(40px, 5vw, 64px);
+
+  @include media-up($bp-about-mission) {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  }
+}
+
+.dh-about-quote {
+  margin: 0;
+  font-size: $fs-quote;
+  line-height: 1.22;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+  color: $color-ink;
+  text-wrap: balance;
+}
+
+.dh-about-quote-accent {
+  color: $color-accent-deep;
+}
+
+.dh-about-mission-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  p {
+    margin: 0;
+    font-size: $fs-body;
+    line-height: 1.72;
+    color: $color-muted;
+    text-wrap: pretty;
+  }
+}
+
+// --- By the numbers ----------------------------------------------------------
+
+.dh-about-numbers {
+  position: relative;
+  background: $color-bg;
+  color: $color-ink;
+  overflow: hidden;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-about-numbers-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(31, 31, 37, 0.085) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+// Shallower than the standard section shell, and above the dot field.
+.dh-about-numbers-inner {
+  position: relative;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: clamp(64px, 8vw, 112px) $container-pad;
+}
+
+.dh-about-numbers-eyebrow {
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+// 1 column, 2 from 620px, 4 from 1000px — the reference's statCols steps.
+.dh-about-stat-grid {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+  grid-template-columns: minmax(0, 1fr);
+
+  @include media-up($bp-about-stat-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-about-wide) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+// Same invert-on-hover as the cards, but resting on the tinted surface.
+.dh-about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  border-radius: $radius-panel;
+  padding: clamp(22px, 2.4vw, 30px);
+  color: $color-ink;
+  transition:
+    background 0.32s ease,
+    border-color 0.32s ease,
+    color 0.32s ease,
+    box-shadow 0.32s ease,
+    opacity 0.32s ease,
+    filter 0.32s ease,
+    transform 0.32s $ease-out-soft;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-about-stat-num {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-about-stat-num {
+  font-size: $fs-stat;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: $color-accent-deep;
+  transition: color 0.32s ease;
+}
+
+.dh-about-stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.dh-about-stat-note {
+  font-size: 15px;
+  line-height: 1.6;
+  color: inherit;
+  opacity: 0.62;
+  text-wrap: pretty;
+}
+
+// --- Culture -----------------------------------------------------------------
+
+.dh-about-culture {
+  background: $color-bg;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-about-culture-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(20px, 4vw, 64px);
+  align-items: center;
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+
+.dh-about-culture-title {
+  margin: 0;
+  font-size: $fs-h2;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: $color-ink;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.dh-about-culture-lead {
+  margin: 0;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $color-muted;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+// --- Team teaser -------------------------------------------------------------
+
+.dh-about-team {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-about-team-shell {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: clamp(64px, 8vw, 110px) $container-pad;
+}
+
+// Copy left, button right; stacks below 860px.
+.dh-about-team-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-card;
+  padding: clamp(28px, 3.4vw, 52px);
+  box-shadow: $shadow-card-soft;
+
+  @include media-up($bp-about-team) {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, auto);
+  }
+}
+
+.dh-about-team-eyebrow {
+  margin-bottom: 18px;
+}
+
+.dh-about-team-title {
+  margin: 0 0 16px;
+  font-size: $fs-h2-compact;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+  color: $color-ink;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.dh-about-team-lead {
+  margin: 0;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $color-muted;
+  max-width: 48ch;
+  text-wrap: pretty;
+}
+
+.dh-about-team-actions {
+  display: flex;
+  justify-content: flex-start;
+}
