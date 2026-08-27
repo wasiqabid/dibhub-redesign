@@ -119,6 +119,9 @@ $hero-pad-bottom-inner: clamp(72px, 9vw, 116px);
 // Service detail heroes open a little tighter than the section landing pages.
 $hero-pad-top-detail: clamp(112px, 13vw, 168px);
 $grid-gap: clamp(16px, 2vw, 28px);
+// Half a gutter — lets a card size itself to one column of a two-column grid
+// while sitting in a flex row rather than in the grid itself.
+$grid-gap-half: clamp(8px, 1vw, 14px);
 
 // --- Breakpoints ------------------------------------------------------------
 // $bp-nav is the desktop/mobile split the source uses for the nav (w >= 900).
@@ -127,6 +130,7 @@ $bp-about-stat-2: 620px;
 $bp-contact-fields: 620px; // same step as $bp-about-stat-2, kept page-scoped
 $bp-benefits-2: 640px;
 $bp-about-tri-2: 660px;
+$bp-work-listing-2: 760px;
 $bp-about-team: 860px;
 $bp-nav: 900px;
 $bp-about-mission: 980px;

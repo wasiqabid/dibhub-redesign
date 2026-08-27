@@ -114,6 +114,13 @@
   color: $color-ink;
 }
 
+// A qualifier beside the project name — "(Web & App)" — set lighter so the
+// name still reads as the heading.
+.dh-work-title-note {
+  color: $color-muted-soft;
+  font-weight: 500;
+}
+
 // Stretching the anchor keeps the whole card clickable without nesting
 // interactive elements or duplicating the link in markup.
 .dh-work-link {
@@ -153,4 +160,72 @@
   display: flex;
   justify-content: center;
   margin-top: clamp(36px, 4.5vw, 56px);
+}
+
+// =============================================================================
+// Portfolio listing page (/portfolio)
+//
+// Every card class above is shared with Home's featured grid. Only the section
+// shell, its two-column head and the grid steps are specific to this page.
+// =============================================================================
+
+// Unlike Home's section this one sits on white.
+.dh-work-listing {
+  background: $color-bg;
+  border-top: 1px solid $color-border-section;
+}
+
+// Heading block left, supporting line right. The services-page heads centre
+// both columns; this one stretches them and drops the lead down instead.
+.dh-work-listing-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(20px, 4vw, 64px);
+  align-items: stretch;
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+
+.dh-work-listing-lead-cell {
+  display: flex;
+  align-items: center;
+  // A one-off optical offset from the reference, not a step on the spacing
+  // scale — it drops the lead clear of the eyebrow above the heading.
+  padding-top: 45px;
+}
+
+.dh-work-listing-lead {
+  margin: 0;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $color-muted;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+// One column, two from 760px.
+.dh-work-listing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $grid-gap;
+  align-items: stretch;
+
+  @include media-up($bp-work-listing-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// The final project sits centred on its own row at one column's width rather
+// than stretching the full width of the grid.
+.dh-work-listing-solo {
+  display: flex;
+  justify-content: center;
+  margin-top: $grid-gap;
+
+  .dh-work-card {
+    width: 100%;
+
+    @include media-up($bp-work-listing-2) {
+      width: calc(50% - #{$grid-gap-half});
+    }
+  }
 }

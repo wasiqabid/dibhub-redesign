@@ -6,10 +6,18 @@ import { useHoverGroup } from '@/hooks/useHoverGroup';
 import { ButtonBadge } from '@/components/icons/Icons';
 import Reveal from '@/components/motion/Reveal';
 import WorkCard from '@/components/portfolio/WorkCard';
-import { FEATURED_PROJECTS } from '@/components/portfolio/projects';
+import { PROJECTS } from '@/components/portfolio/projects';
+
+// The grid is designed for exactly four cards. The slice is a guard, not a
+// feature: if a fifth project is ever flagged `featured` this silently drops
+// it rather than breaking the layout — so if you are here because a project
+// you flagged is not showing, decide which four are actually meant to be
+// featured instead of raising the cap.
+const FEATURED_LIMIT = 4;
 
 export default function Portfolio() {
   const { bind, clear, stateOf } = useHoverGroup();
+  const featured = PROJECTS.filter((project) => project.featured).slice(0, FEATURED_LIMIT);
 
   return (
     <section id="work" className="dh-work" aria-labelledby="work-title">
@@ -26,7 +34,7 @@ export default function Portfolio() {
         </Reveal>
 
         <div className="dh-work-grid" onMouseLeave={clear}>
-          {FEATURED_PROJECTS.map((project, index) => (
+          {featured.map((project, index) => (
             <WorkCard
               key={project.key}
               project={project}
