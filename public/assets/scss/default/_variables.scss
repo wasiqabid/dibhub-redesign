@@ -28,6 +28,15 @@ $color-border-section: #ebecec;
 $color-border-hairline: #f0f0f2;
 $color-border-input: #e2e2e6;
 
+// Contact form fields. $color-muted-light replaces three near-identical greys
+// the design uses for supporting text (#9a9aa4 / #7a7a84 / #8d8d97), all of
+// which fail WCAG AA on white — see the report.
+$color-field-bg: #f9fafa;
+$color-field-border: #e2e5e5;
+$color-field-focus-ring: rgba(67, 179, 174, 0.14);
+$color-checkbox-border: #cfd4d4;
+$color-muted-light: #75757d;
+
 // --- On-dark ----------------------------------------------------------------
 $color-on-dark: #ffffff;
 $color-on-dark-muted: rgba(255, 255, 255, 0.72);
@@ -96,6 +105,7 @@ $fs-hero-lead-inner: clamp(17px, 1.5vw, 19px);
 $fs-quote: clamp(24px, 3.2vw, 40px);
 $fs-h2-compact: clamp(26px, 3.2vw, 40px);
 $fs-stat: clamp(28px, 3.4vw, 44px);
+$fs-panel-title: clamp(22px, 2.4vw, 30px); // Contact form panel heading
 
 // --- Layout -----------------------------------------------------------------
 $container-max: 1280px;
@@ -114,12 +124,14 @@ $grid-gap: clamp(16px, 2vw, 28px);
 // $bp-nav is the desktop/mobile split the source uses for the nav (w >= 900).
 $bp-steps-2: 560px;
 $bp-about-stat-2: 620px;
+$bp-contact-fields: 620px; // same step as $bp-about-stat-2, kept page-scoped
 $bp-benefits-2: 640px;
 $bp-about-tri-2: 660px;
 $bp-about-team: 860px;
 $bp-nav: 900px;
 $bp-about-mission: 980px;
 $bp-about-wide: 1000px;
+$bp-contact-form: 1040px;
 $bp-steps-4: 1120px;
 
 // --- Motion -----------------------------------------------------------------
