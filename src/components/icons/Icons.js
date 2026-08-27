@@ -579,6 +579,41 @@ export function IconSmartPricing(props) {
   );
 }
 
+// --- All Treat case study ----------------------------------------------------
+// Its reminders and financing glyphs are the two added above; these three are
+// the ones with no existing equivalent.
+
+export function IconAppointments(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.6" y="4.6" width="16.8" height="15" rx="2" />
+      <path d="M3.6 9.4h16.8M8.4 3.2v3M15.6 3.2v3" />
+      <path d="M9 14.4h6" />
+    </Svg>
+  );
+}
+
+export function IconScalableArchitecture(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.6" />
+      <rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.6" />
+      <rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.6" />
+      <path d="M17 13.4v7.2M13.4 17h7.2" />
+    </Svg>
+  );
+}
+
+export function IconAutomatedWorkflows(props) {
+  return (
+    <Svg {...props}>
+      <path d="M4 12a8 8 0 0 1 13.7-5.6" />
+      <path d="M20 12a8 8 0 0 1-13.7 5.6" />
+      <path d="M17.8 3.4v3.2h-3.2M6.2 20.6v-3.2h3.2" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {

@@ -665,3 +665,22 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+// --- Per-project measures ----------------------------------------------------
+// The case studies share every rule above; only these text measures are set
+// differently per project, so each one is a modifier on the section root.
+
+.dh-project--all-treat {
+  .dh-project-lead {
+    max-width: 38ch;
+  }
+
+  .dh-project-story-lead {
+    max-width: 46ch;
+  }
+
+  .dh-project-outcomes-title,
+  .dh-project-more-title {
+    max-width: 18ch;
+  }
+}

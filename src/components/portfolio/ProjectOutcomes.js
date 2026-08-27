@@ -2,27 +2,30 @@
 
 import { useHoverGroup } from '@/hooks/useHoverGroup';
 import Reveal from '@/components/motion/Reveal';
-import { BARBR_OUTCOMES } from '@/components/portfolio/barbrContent';
 
-export default function ProjectOutcomes() {
+export default function ProjectOutcomes({ content, variant }) {
   const { bind, clear, stateOf } = useHoverGroup();
 
   return (
-    <section id="outcomes" className="dh-project-outcomes" aria-labelledby="project-outcomes-title">
+    <section
+      id="outcomes"
+      className={variant ? `dh-project-outcomes dh-project--${variant}` : 'dh-project-outcomes'}
+      aria-labelledby="project-outcomes-title"
+    >
       <div className="dh-section-shell">
         <Reveal className="dh-eyebrow-row dh-project-outcomes-eyebrow-row">
-          <span className="dh-eyebrow">{BARBR_OUTCOMES.eyebrow}</span>
+          <span className="dh-eyebrow">{content.eyebrow}</span>
         </Reveal>
 
         <Reveal className="dh-project-outcomes-head">
           <h2 id="project-outcomes-title" className="dh-section-title dh-project-outcomes-title">
-            {BARBR_OUTCOMES.title}
+            {content.title}
           </h2>
-          <p className="dh-project-outcomes-lead">{BARBR_OUTCOMES.lead}</p>
+          <p className="dh-project-outcomes-lead">{content.lead}</p>
         </Reveal>
 
         <div className="dh-project-outcome-grid" onMouseLeave={clear}>
-          {BARBR_OUTCOMES.items.map((item, index) => (
+          {content.items.map((item, index) => (
             <Reveal
               key={item.key}
               className={`dh-project-outcome is-${stateOf(index)}`}

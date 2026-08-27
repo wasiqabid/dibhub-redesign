@@ -21,6 +21,7 @@ export const BARBR_HERO = {
 };
 
 export const BARBR_SHOWCASE = {
+  name: 'Barbr',
   href: 'https://dibhub.com/barbr',
   cta: 'Visit website',
   image: '/assets/images/case-barbr-hero.webp',
