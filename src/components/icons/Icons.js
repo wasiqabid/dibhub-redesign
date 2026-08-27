@@ -556,6 +556,122 @@ export function IconCheck(props) {
   );
 }
 
+// --- Barbr case study --------------------------------------------------------
+// The other outcome glyphs on that page already exist above (growth, efficiency,
+// dashboard, mobile); only these two are new.
+
+export function IconClientEngagement(props) {
+  return (
+    <Svg {...props}>
+      <path d="M20.4 14.2c0 1.1-.9 2-2 2H7.8L4 19.6V6.2c0-1.1.9-2 2-2h12.4c1.1 0 2 .9 2 2v8Z" />
+      <path d="M8.4 10.4h7.2" />
+    </Svg>
+  );
+}
+
+export function IconSmartPricing(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M14.6 9.4a2.8 2.8 0 0 0-2.6-1.4c-1.6 0-2.6.9-2.6 2.1 0 2.9 5.4 1.5 5.4 4.3 0 1.3-1.1 2.2-2.8 2.2a3 3 0 0 1-2.8-1.6" />
+      <path d="M12 6v12" />
+    </Svg>
+  );
+}
+
+// --- All Treat case study ----------------------------------------------------
+// Its reminders and financing glyphs are the two added above; these three are
+// the ones with no existing equivalent.
+
+export function IconAppointments(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.6" y="4.6" width="16.8" height="15" rx="2" />
+      <path d="M3.6 9.4h16.8M8.4 3.2v3M15.6 3.2v3" />
+      <path d="M9 14.4h6" />
+    </Svg>
+  );
+}
+
+export function IconScalableArchitecture(props) {
+  return (
+    <Svg {...props}>
+      <rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.6" />
+      <rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.6" />
+      <rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.6" />
+      <path d="M17 13.4v7.2M13.4 17h7.2" />
+    </Svg>
+  );
+}
+
+export function IconAutomatedWorkflows(props) {
+  return (
+    <Svg {...props}>
+      <path d="M4 12a8 8 0 0 1 13.7-5.6" />
+      <path d="M20 12a8 8 0 0 1-13.7 5.6" />
+      <path d="M17.8 3.4v3.2h-3.2M6.2 20.6v-3.2h3.2" />
+    </Svg>
+  );
+}
+
+// --- Merge case study --------------------------------------------------------
+// Its dashboard glyph is IconInternalDashboard and its cookie-free-analytics
+// shield is IconEnhanceSecurity; these four have no existing equivalent.
+
+export function IconSmartLink(props) {
+  return (
+    <Svg {...props}>
+      <path d="M9.6 14.4 14.4 9.6" />
+      <path d="M11.4 6.6l1.8-1.8a3.7 3.7 0 0 1 5.2 5.2l-1.8 1.8" />
+      <path d="M12.6 17.4l-1.8 1.8a3.7 3.7 0 0 1-5.2-5.2l1.8-1.8" />
+    </Svg>
+  );
+}
+
+export function IconDeepLink(props) {
+  return (
+    <Svg {...props}>
+      <rect x="7" y="2.8" width="10" height="18.4" rx="2.2" />
+      <path d="M11 18.4h2" />
+      <path d="m10 9.6 3.4 2.4-3.4 2.4" />
+    </Svg>
+  );
+}
+
+export function IconGlobe(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M12 3.6v16.8M3.6 12h16.8" />
+      <path d="M12 3.6c2.6 2.4 2.6 14.4 0 16.8M12 3.6c-2.6 2.4-2.6 14.4 0 16.8" />
+    </Svg>
+  );
+}
+
+export function IconMultilingual(props) {
+  return (
+    <Svg {...props}>
+      <path d="M4 6.4h8.4M8.2 4.4v2M10.6 6.4c-.6 4.2-3 6.6-6.6 8" />
+      <path d="M6.4 11.4c1.6 2.4 3.6 3.8 6 4.6" />
+      <path d="m13.6 19.6 3.4-8.4 3.4 8.4" />
+      <path d="M14.9 16.6h4.2" />
+    </Svg>
+  );
+}
+
+// --- Team Recovery Tech case study -------------------------------------------
+// Its other five outcome glyphs already exist (collaboration, dashboard,
+// padlock, calendar, workflow arrows); only this shield-and-cross is new.
+
+export function IconWhiteLabel(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3.2 20.4 7v5.4c0 4.4-3.4 7.6-8.4 9.2-5-1.6-8.4-4.8-8.4-9.2V7L12 3.2Z" />
+      <path d="M9.6 11.6h4.8M12 9.2v4.8" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
