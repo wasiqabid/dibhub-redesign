@@ -672,14 +672,16 @@
 // a modifier on the relevant section root. Barbr sets no modifier and takes the
 // base values throughout.
 
-.dh-project--all-treat {
+.dh-project--all-treat,
+.dh-project--trt {
   .dh-project-lead {
     max-width: 38ch;
   }
 }
 
 .dh-project--all-treat,
-.dh-project--merge {
+.dh-project--merge,
+.dh-project--trt {
   .dh-project-story-lead {
     max-width: 46ch;
   }
@@ -687,6 +689,15 @@
   .dh-project-outcomes-title,
   .dh-project-more-title {
     max-width: 18ch;
+  }
+}
+
+// "Team Recovery Tech" is three words long, so the design drops its headline a
+// step below the other case studies and wraps it rather than letting it run.
+.dh-project--trt {
+  .dh-project-title {
+    max-width: 16ch;
+    font-size: $fs-h1-case-long;
   }
 }
 

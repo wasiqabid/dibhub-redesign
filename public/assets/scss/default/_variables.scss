@@ -103,6 +103,8 @@ $fs-hero-lead: clamp(17px, 1.3vw, 19.5px);
 
 // Inner-page hero — every page except Home shares this heading clamp.
 $fs-h1-inner: clamp(36px, 6vw, 72px);
+// A case study whose project name is too long to sit at the full $fs-h1 step.
+$fs-h1-case-long: clamp(38px, 6vw, 72px);
 $fs-hero-lead-inner: clamp(17px, 1.5vw, 19px);
 
 // About page introduces three fluid steps the other pages do not use.

@@ -7,20 +7,34 @@ import { PROJECTS } from '@/components/portfolio/projects';
 
 // These are other projects' preview cards, not this page's content, so they come
 // from the shared project data with its listing copy folded in — the same cards
-// the /portfolio listing renders. The reference shows the next two projects in
-// listing order after the one being viewed.
+// the /portfolio listing renders.
+//
+// Most references show the first two projects in listing order once the current
+// one is dropped, which is the default here. Team Recovery Tech is the
+// exception — its reference skips All Treat — so a page can name its pair
+// explicitly with `projectKeys` instead.
 const MORE_WORK_LIMIT = 2;
 
-function otherProjects(currentKey) {
-  return PROJECTS.map((project) => ({ ...project, ...project.listing }))
+function listed() {
+  return PROJECTS.map((project) => ({ ...project, ...project.listing }));
+}
+
+function otherProjects(currentKey, projectKeys) {
+  if (projectKeys) {
+    return projectKeys
+      .map((key) => listed().find((project) => project.key === key))
+      .filter(Boolean);
+  }
+
+  return listed()
     .filter((project) => project.key !== currentKey)
     .sort((a, b) => a.order - b.order)
     .slice(0, MORE_WORK_LIMIT);
 }
 
-export default function ProjectMoreWork({ content, currentKey, variant }) {
+export default function ProjectMoreWork({ content, currentKey, projectKeys, variant }) {
   const { bind, clear, stateOf } = useHoverGroup();
-  const projects = otherProjects(currentKey);
+  const projects = otherProjects(currentKey, projectKeys);
 
   return (
     <section

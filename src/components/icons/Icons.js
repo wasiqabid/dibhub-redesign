@@ -659,6 +659,19 @@ export function IconMultilingual(props) {
   );
 }
 
+// --- Team Recovery Tech case study -------------------------------------------
+// Its other five outcome glyphs already exist (collaboration, dashboard,
+// padlock, calendar, workflow arrows); only this shield-and-cross is new.
+
+export function IconWhiteLabel(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3.2 20.4 7v5.4c0 4.4-3.4 7.6-8.4 9.2-5-1.6-8.4-4.8-8.4-9.2V7L12 3.2Z" />
+      <path d="M9.6 11.6h4.8M12 9.2v4.8" />
+    </Svg>
+  );
+}
+
 // --- Chrome ------------------------------------------------------------------
 
 export function IconChevronDown(props) {
