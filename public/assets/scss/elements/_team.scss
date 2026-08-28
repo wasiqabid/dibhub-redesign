@@ -1,4 +1,477 @@
 // =============================================================================
-// team
-// Placeholder — fill in when the approved design for this section is provided.
+// Team — stats, the leadership panel, the member grid and the culture line
+//
+// The hero reuses the shared dark inner-page shell (.dh-page-hero*) and the CTA
+// is the shared .dh-cta; everything else is defined here.
 // =============================================================================
+
+@use 'default' as *;
+
+// --- Hero --------------------------------------------------------------------
+// This headline wraps a line earlier than the other inner pages, and the lead
+// runs a touch wider.
+
+.dh-team-hero-title {
+  max-width: 18ch;
+}
+
+.dh-team-hero-lead {
+  max-width: 58ch;
+}
+
+// --- Stats -------------------------------------------------------------------
+
+.dh-team-stats {
+  position: relative;
+  overflow: hidden;
+  background: $color-bg;
+  color: $color-ink;
+  border-top: 1px solid $color-border-section;
+}
+
+// A lighter dot field than the CTA's, so it sits behind the cards rather than
+// competing with them.
+.dh-team-stats-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(31, 31, 37, 0.085) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.dh-team-stats-inner {
+  @include container;
+  position: relative;
+  padding-top: clamp(56px, 7vw, 96px);
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+
+// One column, two from 620px, three from 900px.
+.dh-team-stats-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+
+  @include media-up($bp-team-stats-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-nav) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.dh-team-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(22px, 2.4vw, 30px);
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  border-radius: $radius-panel;
+  color: $color-ink;
+  transition:
+    background 0.32s ease,
+    border-color 0.32s ease,
+    color 0.32s ease,
+    box-shadow 0.32s ease,
+    opacity 0.32s ease,
+    filter 0.32s ease,
+    transform 0.32s $ease-out-soft;
+
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    .dh-team-stat-num {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}
+
+.dh-team-stat-num {
+  font-size: $fs-stat;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: $color-accent-deep;
+  transition: color 0.32s ease;
+}
+
+.dh-team-stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.dh-team-stat-blurb {
+  font-size: $fs-nav;
+  line-height: 1.6;
+  color: inherit;
+  opacity: 0.62;
+  text-wrap: pretty;
+}
+
+// --- Leadership --------------------------------------------------------------
+
+.dh-team-lead {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-team-lead-inner {
+  @include container;
+  padding-top: clamp(64px, 8vw, 120px);
+  padding-bottom: clamp(64px, 8vw, 120px);
+}
+
+.dh-team-lead-eyebrow-row {
+  margin-bottom: clamp(26px, 3vw, 38px);
+}
+
+// Photo left, biography right from 900px.
+.dh-team-lead-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(26px, 3.4vw, 60px);
+  align-items: center;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  // One-off radius and shadow for this feature panel — see the report.
+  border-radius: 14px;
+  padding: clamp(24px, 3vw, 52px);
+  box-shadow: 0 24px 54px rgba(31, 31, 37, 0.07);
+
+  @include media-up($bp-nav) {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.35fr);
+  }
+}
+
+// The portrait lifts when the panel around it is hovered, not just the photo.
+.dh-team-lead-card {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+  background: $color-bg;
+  transition:
+    box-shadow 0.32s ease,
+    transform 0.32s $ease-out-soft;
+
+  .dh-team-lead-panel:hover & {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 44px rgba(31, 31, 37, 0.14);
+  }
+}
+
+.dh-team-lead-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dh-team-lead-badge {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 6px 14px;
+  font-size: $fs-tag;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-accent-deep;
+  background: $color-accent-tint;
+  border: 1px solid $color-accent-tint-border;
+  border-radius: $radius-pill;
+}
+
+.dh-team-lead-name {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 3.6vw, 46px);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: $color-ink;
+}
+
+.dh-team-lead-role {
+  margin: 0 0 20px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: $color-muted;
+}
+
+.dh-team-lead-bio {
+  margin: 0 0 26px;
+  max-width: 52ch;
+  font-size: $fs-body;
+  line-height: 1.72;
+  color: $color-muted;
+  text-wrap: pretty;
+}
+
+// --- Social buttons ----------------------------------------------------------
+
+.dh-team-socials {
+  display: flex;
+}
+
+.dh-team-socials--lead {
+  gap: 10px;
+
+  .dh-team-social {
+    width: 42px;
+    height: 42px;
+    // Matches the shared button badge, which uses the same one-off radius.
+    border-radius: 9px;
+  }
+
+  svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+.dh-team-socials--member {
+  gap: 8px;
+  margin-top: auto;
+
+  .dh-team-social {
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-xl;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.dh-team-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $color-field-border;
+  background: $color-bg;
+  color: $color-muted;
+  transition:
+    color 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    transform 0.22s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-on-accent;
+    background: $color-accent;
+    border-color: $color-accent;
+    transform: translateY(-2px);
+  }
+}
+
+// --- Member grid -------------------------------------------------------------
+
+.dh-team-people {
+  background: $color-bg;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-team-people-inner {
+  @include container;
+  padding-top: clamp(64px, 8vw, 120px);
+  padding-bottom: clamp(64px, 8vw, 120px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(44px, 5vw, 72px);
+}
+
+// Heading left, supporting line right.
+.dh-team-people-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(18px, 3vw, 56px);
+  align-items: stretch;
+}
+
+.dh-team-people-eyebrow-row {
+  margin-bottom: 20px;
+}
+
+.dh-team-people-title {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(28px, 3.8vw, 48px);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: $color-ink;
+  text-wrap: balance;
+}
+
+.dh-team-people-lead-cell {
+  display: flex;
+  align-items: center;
+  // A one-off optical offset from the reference, not a step on the scale.
+  padding-top: 45px;
+}
+
+.dh-team-people-lead {
+  margin: 0;
+  max-width: 46ch;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $color-muted;
+  text-wrap: pretty;
+}
+
+// One column, two from 480px, three from 760px.
+.dh-team-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+
+  @include media-up($bp-team-cards-2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-up($bp-team-cards-3) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+// Framer holds transform/opacity inline on this element for the entrance, so it
+// stays purely a positioning wrapper — the hover state sits on the card inside.
+.dh-team-member-reveal {
+  display: flex;
+  flex-direction: column;
+}
+
+.dh-team-member {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  // One-off radius for the member card — see the report.
+  border-radius: 16px;
+  overflow: hidden;
+  transition:
+    border-color 0.32s ease,
+    box-shadow 0.32s ease,
+    filter 0.32s ease,
+    opacity 0.32s ease,
+    transform 0.32s $ease-out-soft;
+
+  // Unlike the stat cards these do not invert; the hovered card lifts and the
+  // rest recede.
+  &.is-active {
+    transform: translateY(-6px) scale(1.02);
+    border-color: $color-accent;
+    box-shadow: $shadow-card-hover;
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+
+  &:focus-within {
+    border-color: $color-accent;
+  }
+}
+
+.dh-team-member-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: $color-bg;
+}
+
+.dh-team-member-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dh-team-member-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+  padding: clamp(18px, 2vw, 24px);
+}
+
+.dh-team-member-id {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dh-team-member-name {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: $color-ink;
+}
+
+.dh-team-member-role {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: $color-muted-soft;
+}
+
+// --- Culture line ------------------------------------------------------------
+
+.dh-team-culture {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border-section;
+}
+
+.dh-team-culture-inner {
+  @include container;
+  padding-top: clamp(56px, 7vw, 104px);
+  padding-bottom: clamp(56px, 7vw, 104px);
+}
+
+// Label left, quote right from 900px.
+.dh-team-culture-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+
+  @include media-up($bp-nav) {
+    grid-template-columns: minmax(0, auto) minmax(0, 2fr);
+  }
+}
+
+.dh-team-culture-quote {
+  margin: 0;
+  font-size: clamp(22px, 2.9vw, 36px);
+  line-height: 1.24;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+  color: $color-ink;
+  text-wrap: balance;
+}
+
+.dh-team-culture-accent {
+  color: $color-accent-deep;
+}

@@ -131,9 +131,11 @@ $grid-gap-half: clamp(8px, 1vw, 14px);
 
 // --- Breakpoints ------------------------------------------------------------
 // $bp-nav is the desktop/mobile split the source uses for the nav (w >= 900).
+$bp-team-cards-2: 480px;
 $bp-steps-2: 560px;
 $bp-about-stat-2: 620px;
 $bp-contact-fields: 620px; // same step as $bp-about-stat-2, kept page-scoped
+$bp-team-stats-2: 620px;
 $bp-benefits-2: 640px;
 // Case-study steps. Same values as $bp-benefits-2 / $bp-about-mission /
 // $bp-steps-4, kept page-scoped the way $bp-contact-fields already is.
@@ -142,6 +144,7 @@ $bp-project-story: 980px;
 $bp-project-outcomes-3: 1120px;
 $bp-about-tri-2: 660px;
 $bp-work-listing-2: 760px;
+$bp-team-cards-3: 760px; // same step as $bp-work-listing-2, kept page-scoped
 $bp-about-team: 860px;
 $bp-nav: 900px;
 $bp-about-mission: 980px;
