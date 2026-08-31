@@ -261,6 +261,7 @@
 }
 
 .dh-team-social {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -279,6 +280,22 @@
     background: $color-accent;
     border-color: $color-accent;
     transform: translateY(-2px);
+  }
+}
+
+// These buttons are 36px and 42px by design, which is under the 44px a finger
+// needs. A coarse pointer gets an invisible 44x44 hit area centred on each one
+// instead — the visible button, its spacing and the mouse hit area are all
+// unchanged, only what a finger can land on grows.
+@media (pointer: coarse) {
+  .dh-team-social::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
   }
 }
 
