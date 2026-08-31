@@ -23,8 +23,14 @@
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.01em;
-  padding: 11px 13px 11px 26px;
-  border: 1.5px solid transparent;
+  // The 1.5px the border used to occupy is folded into the padding, so the pill
+  // keeps its box. The border itself is gone because a transparent ring around
+  // this radius is what produced the seam at the caps: the browser snaps it to a
+  // single device pixel and rasterises it separately from the border-box-clipped
+  // gradient underneath, so each end bled the opposite end's colour. `0` rather
+  // than omitted — this class is used on <button> too, which has a UA border.
+  padding: 12.5px 14.5px 12.5px 27.5px;
+  border: 0;
   border-radius: $radius-pill;
   transition:
     filter 0.2s ease,
