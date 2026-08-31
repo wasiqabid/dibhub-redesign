@@ -230,6 +230,15 @@
   color: $color-muted-light;
 }
 
+// Temporary acknowledgment shown after a submit while the form has no backend.
+.dh-contact-pending {
+  margin: 16px 0 0;
+  font-size: $fs-nav;
+  line-height: 1.6;
+  color: $color-muted;
+  text-wrap: pretty;
+}
+
 // --- Details panel -----------------------------------------------------------
 
 .dh-contact-aside {

@@ -6,3 +6,4 @@ package-lock.json
 
 # Read-only design hand-off from Claude Design — never reformat it.
 design-reference
+design-export

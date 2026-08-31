@@ -116,10 +116,3 @@ export const ABOUT_TEAM = {
   lead: 'Certified specialists in every discipline we offer, with the senior leads who will actually be on your project.',
   cta: { label: 'Meet the team', href: '/team' },
 };
-
-export const ABOUT_CTA = {
-  eyebrow: 'Get started',
-  title: 'Book a free consultation.',
-  lead: "Thirty minutes with an engineer, not a salesperson. Bring the problem — you'll leave with an honest read on scope, approach and cost.",
-  cta: { label: 'Schedule now', href: '/contact' },
-};

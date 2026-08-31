@@ -21,8 +21,9 @@ export default function ServiceApproach({ eyebrow, title, paragraphs, benefits }
             </h2>
           </div>
           <div className="dh-svc-approach-copy">
-            {paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            {/* Static prose that never reorders, so the index is a stable key. */}
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
             ))}
           </div>
         </Reveal>

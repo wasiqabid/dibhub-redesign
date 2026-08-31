@@ -73,5 +73,5 @@ export const FOOTER_CONTACT_LINKS = [
   { label: 'hello@dibhub.com', href: 'mailto:hello@dibhub.com' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/dibhub' },
   { label: 'Instagram', href: 'https://www.instagram.com/dib_hub/' },
-  { label: 'Facebook', href: 'https://www.facebook.com/dibhub' },
+  { label: 'Facebook', href: 'https://www.facebook.com/people/DibHub/61578628965230/' },
 ];

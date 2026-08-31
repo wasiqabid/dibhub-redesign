@@ -9,7 +9,22 @@ import Reveal from '@/components/motion/Reveal';
 // `ctaLabel` differs by page — Home reads "View project", the Portfolio listing
 // "View Project" — so it is a prop with Home's wording as the default rather
 // than a second copy of this component.
-export default function WorkCard({ project, index, state, bind, ctaLabel = 'View project' }) {
+//
+// `sizes` differs too: every grid that renders these cards settles at two
+// columns of 570px once the page container hits its 1280px cap, but they drop
+// to one column at different widths — the listing grids at 760px, Home's
+// auto-fit grid nearer 900px. Each caller passes its own hint; this default is
+// the conservative one.
+const DEFAULT_SIZES = '(min-width: 1280px) 570px, (min-width: 900px) 45vw, 100vw';
+
+export default function WorkCard({
+  project,
+  index,
+  state,
+  bind,
+  ctaLabel = 'View project',
+  sizes = DEFAULT_SIZES,
+}) {
   return (
     <Reveal className={`dh-work-card is-${state}`} index={index} {...bind}>
       {/* The frame is always reserved, so a project still waiting on its
@@ -23,7 +38,7 @@ export default function WorkCard({ project, index, state, bind, ctaLabel = 'View
             alt={`${project.title} — project screenshot`}
             width={project.width}
             height={project.height}
-            sizes="(min-width: 900px) 45vw, 100vw"
+            sizes={sizes}
           />
         ) : null}
       </div>

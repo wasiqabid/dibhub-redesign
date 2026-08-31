@@ -105,3 +105,31 @@
     filter 0.38s ease,
     opacity 0.38s ease;
 }
+
+// The hover-group states that go with `pop-card`: the card under the cursor
+// lifts and inverts to the ink surface, and every sibling recedes. Eleven card
+// grids share this exact treatment and the child that takes the accent colour —
+// an icon tile, or a stat's numerals — is the only thing that differs, so it is
+// the one parameter.
+//
+// Grids that lift without inverting (`.dh-work-card`, `.dh-team-member`) and the
+// story rows keep their own rules; their values genuinely differ.
+@mixin pop-card-states($accent-child) {
+  &.is-active {
+    transform: translateY(-6px) scale(1.035);
+    background: $color-ink;
+    color: $color-on-dark;
+    border-color: $color-ink;
+    box-shadow: $shadow-card-pop;
+
+    #{$accent-child} {
+      color: $color-accent;
+    }
+  }
+
+  &.is-dimmed {
+    transform: scale(0.985);
+    filter: blur(2px);
+    opacity: 0.45;
+  }
+}

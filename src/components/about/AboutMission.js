@@ -27,8 +27,9 @@ export default function AboutMission() {
             {quote.after}
           </blockquote>
           <div className="dh-about-mission-copy">
-            {ABOUT_MISSION.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            {/* Static prose that never reorders, so the index is a stable key. */}
+            {ABOUT_MISSION.paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
             ))}
           </div>
         </Reveal>

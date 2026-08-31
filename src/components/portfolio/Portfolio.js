@@ -41,6 +41,8 @@ export default function Portfolio() {
               index={index}
               state={stateOf(index)}
               bind={bind(index)}
+              // auto-fit keeps this one column until ~900px.
+              sizes="(min-width: 1280px) 570px, (min-width: 900px) 45vw, 100vw"
             />
           ))}
         </div>

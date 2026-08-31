@@ -79,23 +79,7 @@
     filter 0.32s ease,
     transform 0.32s $ease-out-soft;
 
-  &.is-active {
-    transform: translateY(-6px) scale(1.035);
-    background: $color-ink;
-    color: $color-on-dark;
-    border-color: $color-ink;
-    box-shadow: $shadow-card-pop;
-
-    .dh-team-stat-num {
-      color: $color-accent;
-    }
-  }
-
-  &.is-dimmed {
-    transform: scale(0.985);
-    filter: blur(2px);
-    opacity: 0.45;
-  }
+  @include pop-card-states('.dh-team-stat-num');
 }
 
 .dh-team-stat-num {

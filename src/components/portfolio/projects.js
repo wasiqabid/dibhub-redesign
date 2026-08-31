@@ -64,7 +64,7 @@ export const PROJECTS = [
     },
   },
   {
-    key: 'team-recovery-tech',
+    key: 'trt',
     title: 'Team Recovery Tech',
     href: '/portfolio/trt',
     tags: ['Mobile App', 'Behavioral Health'],
@@ -95,3 +95,10 @@ export const PROJECTS = [
     listing: { order: 5, solo: true },
   },
 ];
+
+// Every project with its `listing` overrides folded over the base copy — what
+// the Portfolio listing and each case study's "other projects" row both render.
+// Order is the caller's business; this only does the merge.
+export function listedProjects() {
+  return PROJECTS.map((project) => ({ ...project, ...project.listing }));
+}

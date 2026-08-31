@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import { ButtonBadge, IconCheck } from '@/components/icons/Icons';
 import { CONTACT_FORM } from '@/components/contact/contactContent';
 
@@ -12,11 +14,17 @@ import { CONTACT_FORM } from '@/components/contact/contactContent';
 // CSS (`:checked` on the visually hidden input) rather than React state, so
 // nothing here pretends to manage form data.
 export default function ContactForm({ className = '', ...hoverProps }) {
+  const [acknowledged, setAcknowledged] = useState(false);
+
   const handleSubmit = (event) => {
     // Stops the browser doing a native GET submission until the real handler
     // lands. Native `required` validation still runs before this fires.
     event.preventDefault();
+    // Temporary stand-in so a submit is not silently swallowed. This is an
+    // acknowledgment only — no request, no loading or error state. That arrives
+    // with the legacy contact-form merge.
     // TODO: wire up submit handler when merging legacy contact-form logic
+    setAcknowledged(true);
   };
 
   return (
@@ -113,6 +121,14 @@ export default function ContactForm({ className = '', ...hoverProps }) {
           </button>
           <span className="dh-contact-reassurance">{CONTACT_FORM.reassurance}</span>
         </div>
+
+        {acknowledged ? (
+          <p className="dh-contact-pending" role="status">
+            {CONTACT_FORM.pending.before}
+            <a href={CONTACT_FORM.pending.emailHref}>{CONTACT_FORM.pending.email}</a>
+            {CONTACT_FORM.pending.after}
+          </p>
+        ) : null}
       </form>
     </div>
   );
