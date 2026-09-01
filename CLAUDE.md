@@ -176,8 +176,8 @@ One file per section/component: `_header.scss`, `_footer.scss`, `_banner.scss`,
 `_button.scss`, `_services.scss`, `_portfolio.scss`, `_process.scss`, `_cta.scss`,
 `_back-to-top.scss`, `_testimonials.scss`, `_about.scss`, `_contact.scss`, `_team.scss`.
 
-`_testimonials.scss`, `_about.scss`, `_contact.scss` and `_team.scss` are still empty —
-those sections have not been designed yet. Leave them registered and unstyled.
+`_testimonials.scss` is still empty — that section has not been designed yet. Leave it
+registered and unstyled.
 
 Adding a new section means: create `elements/_<section>.scss` **and** add
 `@use 'elements/<section>';` to `style.scss`.

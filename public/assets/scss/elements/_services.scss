@@ -37,23 +37,7 @@
   padding: clamp(26px, 2.8vw, 34px);
   @include pop-card;
 
-  &.is-active {
-    transform: translateY(-6px) scale(1.035);
-    background: $color-ink;
-    color: $color-on-dark;
-    border-color: $color-ink;
-    box-shadow: $shadow-card-pop;
-
-    .dh-service-icon {
-      color: $color-accent;
-    }
-  }
-
-  &.is-dimmed {
-    transform: scale(0.985);
-    filter: blur(2px);
-    opacity: 0.45;
-  }
+  @include pop-card-states('.dh-service-icon');
 }
 
 .dh-service-icon {
@@ -115,23 +99,7 @@
   cursor: pointer;
   @include pop-card;
 
-  &.is-active {
-    transform: translateY(-6px) scale(1.035);
-    background: $color-ink;
-    color: $color-on-dark;
-    border-color: $color-ink;
-    box-shadow: $shadow-card-pop;
-
-    .dh-offering-icon {
-      color: $color-accent;
-    }
-  }
-
-  &.is-dimmed {
-    transform: scale(0.985);
-    filter: blur(2px);
-    opacity: 0.45;
-  }
+  @include pop-card-states('.dh-offering-icon');
 
   &:focus-within {
     border-color: $color-accent;
@@ -212,23 +180,7 @@
   padding: clamp(22px, 2.4vw, 28px);
   @include pop-card;
 
-  &.is-active {
-    transform: translateY(-6px) scale(1.035);
-    background: $color-ink;
-    color: $color-on-dark;
-    border-color: $color-ink;
-    box-shadow: $shadow-card-pop;
-
-    .dh-benefit-icon {
-      color: $color-accent;
-    }
-  }
-
-  &.is-dimmed {
-    transform: scale(0.985);
-    filter: blur(2px);
-    opacity: 0.45;
-  }
+  @include pop-card-states('.dh-benefit-icon');
 }
 
 .dh-benefit-icon {
@@ -237,7 +189,7 @@
 
 .dh-benefit-title {
   margin: 0;
-  font-size: 17px;
+  font-size: $fs-h3-service;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: inherit;

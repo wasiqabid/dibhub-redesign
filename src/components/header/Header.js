@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useScrollMetrics } from '@/hooks/useScrollMetrics';
-import { CONTACT_LINK, PRIMARY_LINKS, SOCIAL_LINKS } from '@/utils/navigation';
+import { CONTACT_LINK, PRIMARY_LINKS, SERVICE_LINKS, SOCIAL_LINKS } from '@/utils/navigation';
 import {
   IconChevronDown,
   IconFacebook,
@@ -15,7 +15,6 @@ import {
   IconLinkedIn,
 } from '@/components/icons/Icons';
 import ServicesMegaMenu from '@/components/header/ServicesMegaMenu';
-import MobileMenu from '@/components/header/MobileMenu';
 
 const SOCIAL_ICONS = {
   linkedin: IconLinkedIn,
@@ -59,6 +58,8 @@ export default function Header() {
     // in; client-side navigation has to reset it to behave the same way.
     setNavHovered(false);
   }, [pathname]);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   const openServices = useCallback(() => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -229,7 +230,46 @@ export default function Header() {
         <div className="dh-progress-bar" style={{ transform: `scaleX(${progress})` }} />
       </div>
 
-      {!isDesktop && menuOpen ? <MobileMenu onNavigate={() => setMenuOpen(false)} /> : null}
+      {/* Same PRIMARY_LINKS as the bar above, and the same `hasMegaMenu` branch
+          — but there is no hover on touch, so Services expands to a flat list
+          inline instead of opening the desktop panel, and the social icons the
+          bar carries are left out entirely. */}
+      {!isDesktop && menuOpen ? (
+        <nav className="dh-mobile-menu" aria-label="Primary">
+          {PRIMARY_LINKS.map((link) =>
+            link.hasMegaMenu ? (
+              <div key={link.href} className="dh-mobile-group">
+                <Link href={link.href} className="dh-mobile-group-title" onClick={closeMenu}>
+                  {link.label}
+                </Link>
+                {SERVICE_LINKS.map((service) => (
+                  <Link
+                    key={service.key}
+                    href={service.href}
+                    className="dh-mobile-sublink"
+                    onClick={closeMenu}
+                  >
+                    {service.label}
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`dh-mobile-link${link.href === '/' ? ' dh-mobile-link--home' : ''}`}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </Link>
+            )
+          )}
+
+          <Link href={CONTACT_LINK.href} className="dh-mobile-cta" onClick={closeMenu}>
+            {CONTACT_LINK.label}
+          </Link>
+        </nav>
+      ) : null}
     </header>
   );
 }

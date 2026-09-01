@@ -33,13 +33,13 @@ Windows; PowerShell and Git Bash both available.
 
 ## Build status
 
-| Built                                                         | Placeholder (bare `<h1>`, awaiting design)                      |
-| ------------------------------------------------------------- | --------------------------------------------------------------- |
-| `/`, `/services`, all six `/services/*`, `/about`, `/contact` | `/team`, `/portfolio`, `/portfolio/{merge,barbr,all-treat,trt}` |
+| Built                                                                                                                                              | Placeholder (bare `<h1>`, awaiting design) |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| `/`, `/services`, all six `/services/*`, `/about`, `/contact`, `/team`, `/portfolio`, `/portfolio/{merge,barbr,all-treat,trt}` — every route in §3 | _none_                                     |
 
-**Next up:** `/team`, then `/portfolio` and the four project detail pages. References are
-`design-reference/source/DibHub Team.dc.html`, `DibHub Portfolio.dc.html`, and
-`DibHub Project - *.dc.html`.
+**Next up:** no page is outstanding. The remaining work is the open items below — the contact
+form has no backend, `_testimonials.scss` is the one unstyled partial (that section has no
+approved design yet), and the header still has no no-JS navigation.
 
 ### Uncommitted right now
 

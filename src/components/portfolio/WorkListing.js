@@ -4,13 +4,11 @@ import { useHoverGroup } from '@/hooks/useHoverGroup';
 import Reveal from '@/components/motion/Reveal';
 import WorkCard from '@/components/portfolio/WorkCard';
 import { PORTFOLIO_LISTING } from '@/components/portfolio/portfolioContent';
-import { PROJECTS } from '@/components/portfolio/projects';
+import { listedProjects } from '@/components/portfolio/projects';
 
 // Every project, in the reference's listing order rather than Home's, with each
 // project's listing copy folded over its base copy.
-const LISTED_PROJECTS = PROJECTS.map((project) => ({ ...project, ...project.listing })).sort(
-  (a, b) => a.order - b.order
-);
+const LISTED_PROJECTS = listedProjects().sort((a, b) => a.order - b.order);
 
 // The reference puts the last project on its own centred row at one column's
 // width instead of letting it stretch across the grid.
@@ -30,6 +28,8 @@ export default function WorkListing() {
       state={stateOf(index)}
       bind={bind(index)}
       ctaLabel="View Project"
+      // Two columns from 760px, unlike Home's auto-fit grid.
+      sizes="(min-width: 1280px) 570px, (min-width: 760px) 45vw, 100vw"
     />
   );
 

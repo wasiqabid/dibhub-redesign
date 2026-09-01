@@ -15,6 +15,15 @@ export const CONTACT_FORM = {
     'I agree to DibHub storing the details above so the team can respond to my enquiry. We never share them with third parties.',
   submit: 'Send message',
   reassurance: 'No obligation, no automated drip.',
+  // Shown after a submit until the real handler lands with the legacy form
+  // merge. Deliberately says the form is not live rather than implying the
+  // message was sent.
+  pending: {
+    before: 'Thanks — this form is not connected yet, so nothing was sent. Please reach us at ',
+    email: 'hello@dibhub.com',
+    emailHref: 'mailto:hello@dibhub.com?subject=Project%20enquiry%20for%20DibHub',
+    after: ' and we will pick it up from there.',
+  },
 };
 
 export const CONTACT_PANEL = {

@@ -8,7 +8,17 @@ import { FlatCompat } from '@eslint/eslintrc';
 const compat = new FlatCompat({ baseDirectory: dirname(fileURLToPath(import.meta.url)) });
 
 const config = [
-  { ignores: ['.next/**', 'node_modules/**', 'design-reference/**', 'out/**'] },
+  {
+    ignores: [
+      '.next/**',
+      'node_modules/**',
+      'design-reference/**',
+      // Vendored design-tool output, same as design-reference. Not present in
+      // this checkout, but listed so a future export is never linted.
+      'design-export/**',
+      'out/**',
+    ],
+  },
   ...compat.extends('next/core-web-vitals'),
 ];
 

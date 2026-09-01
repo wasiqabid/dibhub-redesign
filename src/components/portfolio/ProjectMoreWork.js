@@ -3,7 +3,7 @@
 import { useHoverGroup } from '@/hooks/useHoverGroup';
 import Reveal from '@/components/motion/Reveal';
 import WorkCard from '@/components/portfolio/WorkCard';
-import { PROJECTS } from '@/components/portfolio/projects';
+import { listedProjects } from '@/components/portfolio/projects';
 
 // These are other projects' preview cards, not this page's content, so they come
 // from the shared project data with its listing copy folded in — the same cards
@@ -15,18 +15,14 @@ import { PROJECTS } from '@/components/portfolio/projects';
 // explicitly with `projectKeys` instead.
 const MORE_WORK_LIMIT = 2;
 
-function listed() {
-  return PROJECTS.map((project) => ({ ...project, ...project.listing }));
-}
-
 function otherProjects(currentKey, projectKeys) {
   if (projectKeys) {
     return projectKeys
-      .map((key) => listed().find((project) => project.key === key))
+      .map((key) => listedProjects().find((project) => project.key === key))
       .filter(Boolean);
   }
 
-  return listed()
+  return listedProjects()
     .filter((project) => project.key !== currentKey)
     .sort((a, b) => a.order - b.order)
     .slice(0, MORE_WORK_LIMIT);
@@ -63,6 +59,8 @@ export default function ProjectMoreWork({ content, currentKey, projectKeys, vari
               state={stateOf(index)}
               bind={bind(index)}
               ctaLabel="View Project"
+              // Two columns from 760px, same grid as the listing page.
+              sizes="(min-width: 1280px) 570px, (min-width: 760px) 45vw, 100vw"
             />
           ))}
         </div>

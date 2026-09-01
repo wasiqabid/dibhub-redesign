@@ -1,5 +1,5 @@
+import Cta from '@/components/cta/Cta';
 import AboutBanner from '@/components/about/AboutBanner';
-import AboutCta from '@/components/about/AboutCta';
 import AboutCulture from '@/components/about/AboutCulture';
 import AboutMission from '@/components/about/AboutMission';
 import AboutNumbers from '@/components/about/AboutNumbers';
@@ -26,7 +26,7 @@ export default function AboutPage() {
       <AboutNumbers />
       <AboutCulture />
       <AboutTeamTeaser />
-      <AboutCta />
+      <Cta />
     </>
   );
 }

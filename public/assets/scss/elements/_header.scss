@@ -210,23 +210,7 @@ $header-over-hero: 'body:has([data-hero-host]) .dh-header:not(.dh-header--solid)
   padding: 18px;
   @include pop-card;
 
-  &.is-active {
-    transform: translateY(-6px) scale(1.035);
-    background: $color-ink;
-    color: $color-on-dark;
-    border-color: $color-ink;
-    box-shadow: $shadow-card-pop;
-
-    .dh-cap-icon {
-      color: $color-accent;
-    }
-  }
-
-  &.is-dimmed {
-    transform: scale(0.985);
-    filter: blur(2px);
-    opacity: 0.45;
-  }
+  @include pop-card-states('.dh-cap-icon');
 }
 
 .dh-cap-icon {
@@ -299,7 +283,7 @@ $header-over-hero: 'body:has([data-hero-host]) .dh-header:not(.dh-header--solid)
 }
 
 .dh-mobile-link {
-  font-size: 17px;
+  font-size: $fs-body;
   font-weight: 500;
   color: $color-ink-soft;
   padding: 13px 0;
@@ -319,7 +303,7 @@ $header-over-hero: 'body:has([data-hero-host]) .dh-header:not(.dh-header--solid)
 }
 
 .dh-mobile-group-title {
-  font-size: 17px;
+  font-size: $fs-body;
   font-weight: 500;
   color: $color-ink-soft;
   margin-bottom: 6px;
